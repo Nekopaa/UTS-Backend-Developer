@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\laporan_penjualan;
+use App\Models\LaporanPenjualan;
 
-class laporanPenjualanController extends Controller
+class LaporanPenjualanController extends Controller
 {
     public function index()
     {
-        $laporan = laporan_penjualan::all();
+        $laporan = LaporanPenjualan::all();
         return view('laporan_penjualan.index', compact('laporan'));
     }
 
     public function show($id)
     {
-        $laporan = laporan_penjualan::findOrFail($id);
+        $laporan = LaporanPenjualan::findOrFail($id);
         return view('laporan_penjualan.show', compact('laporan'));
     }
 }

@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\pengiriman;
+use App\Models\Pengiriman;
 
-class pengirimanController extends Controller
+class PengirimanController extends Controller
 {
     public function index()
     {
-        $pengiriman = pengiriman::all();
+        $pengiriman = Pengiriman::all();
         return view('pengiriman.index', compact('pengiriman'));
     }
 
     public function show($id)
     {
-        $pengiriman = pengiriman::findOrFail($id);
+        $pengiriman = Pengiriman::findOrFail($id);
         return view('pengiriman.show', compact('pengiriman'));
     }
 
@@ -26,7 +26,7 @@ class pengirimanController extends Controller
             'catatan_kurir' => 'nullable|string',
         ]);
 
-        $pengiriman = pengiriman::findOrFail($id);
+        $pengiriman = Pengiriman::findOrFail($id);
         $pengiriman->update($validated);
 
         return redirect()->route('pengiriman.index')->with('success', 'Status pengiriman berhasil diupdate');

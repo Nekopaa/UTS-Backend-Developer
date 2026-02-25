@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\admin;
+use App\Models\Admin;
 
-class adminController extends Controller
+class AdminController extends Controller
 {
     public function index()
     {
-        $admin = admin::all();
+        $admin = Admin::all();
         return view('admin.index', compact('admin'));
     }
 
@@ -30,26 +30,26 @@ class adminController extends Controller
             'status_admin' => 'required|string',
         ]);
 
-        admin::create($validated);
+        Admin::create($validated);
 
         return redirect()->route('admin.index')->with('success', 'Admin berhasil ditambahkan');
     }
 
     public function show($id)
     {
-        $admin = admin::findOrFail($id);
+        $admin = Admin::findOrFail($id);
         return view('admin.show', compact('admin'));
     }
 
     public function edit($id)
     {
-        $admin = admin::findOrFail($id);
+        $admin = Admin::findOrFail($id);
         return view('admin.edit', compact('admin'));
     }
 
     public function update(Request $request, $id)
     {
-        $admin = admin::findOrFail($id);
+        $admin = Admin::findOrFail($id);
 
         $validated = $request->validate([
             'nama_admin' => 'required|string|max:255',
@@ -71,7 +71,7 @@ class adminController extends Controller
 
     public function destroy($id)
     {
-        $admin = admin::findOrFail($id);
+        $admin = Admin::findOrFail($id);
         $admin->delete();
 
         return redirect()->route('admin.index')->with('success', 'Admin berhasil dihapus');

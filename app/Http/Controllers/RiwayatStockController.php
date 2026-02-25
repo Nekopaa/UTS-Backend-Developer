@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\riwayat_stock;
+use App\Models\RiwayatStock;
 
-class riwayatStockController extends Controller
+class RiwayatStockController extends Controller
 {
     public function index()
     {
-        $riwayat = riwayat_stock::all();
+        $riwayat = RiwayatStock::all();
         return view('riwayat_stock.index', compact('riwayat'));
     }
 
     public function show($id)
     {
-        $riwayat = riwayat_stock::findOrFail($id);
+        $riwayat = RiwayatStock::findOrFail($id);
         return view('riwayat_stock.show', compact('riwayat'));
     }
 }

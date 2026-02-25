@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class riwayat_stock extends Model
+class RiwayatStock extends Model
 {
     use HasFactory;
 

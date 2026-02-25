@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\transaksi;
+use App\Models\Transaksi;
 
-class transaksiController extends Controller
+class TransaksiController extends Controller
 {
     public function index()
     {
-        $transaksi = transaksi::all();
+        $transaksi = Transaksi::all();
         return view('transaksi.index', compact('transaksi'));
     }
 
     public function show($id)
     {
-        $transaksi = transaksi::findOrFail($id);
+        $transaksi = Transaksi::findOrFail($id);
         return view('transaksi.show', compact('transaksi'));
     }
 
@@ -25,7 +25,7 @@ class transaksiController extends Controller
             'status_pembayaran' => 'required|string',
         ]);
 
-        $transaksi = transaksi::findOrFail($id);
+        $transaksi = Transaksi::findOrFail($id);
         $transaksi->update($validated);
 
         return redirect()->route('transaksi.index')->with('success', 'Status transaksi berhasil diupdate');

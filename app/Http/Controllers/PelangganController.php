@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\pelanggan;
+use App\Models\Pelanggan;
 
-class pelangganController extends Controller
+class PelangganController extends Controller
 {
     public function index()
     {
-        $pelanggan = pelanggan::all();
+        $pelanggan = Pelanggan::all();
         return view('pelanggan.index', compact('pelanggan'));
     }
 
@@ -26,20 +26,20 @@ class pelangganController extends Controller
             'no_hp' => 'required|string|max:20',
         ]);
 
-        pelanggan::create($validated);
+        Pelanggan::create($validated);
 
         return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil ditambahkan');
     }
 
     public function show($id)
     {
-        $pelanggan = pelanggan::findOrFail($id);
+        $pelanggan = Pelanggan::findOrFail($id);
         return view('pelanggan.show', compact('pelanggan'));
     }
 
     public function edit($id)
     {
-        $pelanggan = pelanggan::findOrFail($id);
+        $pelanggan = Pelanggan::findOrFail($id);
         return view('pelanggan.edit', compact('pelanggan'));
     }
 
@@ -51,7 +51,7 @@ class pelangganController extends Controller
             'no_hp' => 'required|string|max:20',
         ]);
 
-        $pelanggan = pelanggan::findOrFail($id);
+        $pelanggan = Pelanggan::findOrFail($id);
         $pelanggan->update($validated);
 
         return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil diupdate');
@@ -59,7 +59,7 @@ class pelangganController extends Controller
 
     public function destroy($id)
     {
-        $pelanggan = pelanggan::findOrFail($id);
+        $pelanggan = Pelanggan::findOrFail($id);
         $pelanggan->delete();
 
         return redirect()->route('pelanggan.index')->with('success', 'Pelanggan berhasil dihapus');

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\produk_air;
+use App\Models\ProdukAir;
 use Illuminate\Support\Facades\Storage;
 
-class produkAirController extends Controller
+class ProdukAirController extends Controller
 {
     public function index()
     {
-        $produk = produk_air::all();
+        $produk = ProdukAir::all();
         return view('produk_air.index', compact('produk'));
     }
 
@@ -37,26 +37,26 @@ class produkAirController extends Controller
             $validated['foto_produk'] = $path;
         }
 
-        produk_air::create($validated);
+        ProdukAir::create($validated);
 
         return redirect()->route('produk-air.index')->with('success', 'Produk berhasil ditambahkan');
     }
 
     public function show($id)
     {
-        $produk = produk_air::findOrFail($id);
+        $produk = ProdukAir::findOrFail($id);
         return view('produk_air.show', compact('produk'));
     }
 
     public function edit($id)
     {
-        $produk = produk_air::findOrFail($id);
+        $produk = ProdukAir::findOrFail($id);
         return view('produk_air.edit', compact('produk'));
     }
 
     public function update(Request $request, $id)
     {
-        $produk = produk_air::findOrFail($id);
+        $produk = ProdukAir::findOrFail($id);
 
         $validated = $request->validate([
             'nama_produk' => 'required|string|max:255',
@@ -84,7 +84,7 @@ class produkAirController extends Controller
 
     public function destroy($id)
     {
-        $produk = produk_air::findOrFail($id);
+        $produk = ProdukAir::findOrFail($id);
         if ($produk->foto_produk) {
             Storage::disk('public')->delete($produk->foto_produk);
         }

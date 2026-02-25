@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\langganan;
+use App\Models\Langganan;
 
-class langgananController extends Controller
+class LanggananController extends Controller
 {
     public function index()
     {
-        $langganan = langganan::all();
+        $langganan = Langganan::all();
         return view('langganan.index', compact('langganan'));
     }
 
@@ -28,20 +28,20 @@ class langgananController extends Controller
             'status_langganan' => 'required|string',
         ]);
 
-        langganan::create($validated);
+        Langganan::create($validated);
 
         return redirect()->route('langganan.index')->with('success', 'Langganan berhasil ditambahkan');
     }
 
     public function show($id)
     {
-        $langganan = langganan::findOrFail($id);
+        $langganan = Langganan::findOrFail($id);
         return view('langganan.show', compact('langganan'));
     }
 
     public function edit($id)
     {
-        $langganan = langganan::findOrFail($id);
+        $langganan = Langganan::findOrFail($id);
         return view('langganan.edit', compact('langganan'));
     }
 
@@ -55,7 +55,7 @@ class langgananController extends Controller
             'status_langganan' => 'required|string',
         ]);
 
-        $langganan = langganan::findOrFail($id);
+        $langganan = Langganan::findOrFail($id);
         $langganan->update($validated);
 
         return redirect()->route('langganan.index')->with('success', 'Langganan berhasil diupdate');
@@ -63,7 +63,7 @@ class langgananController extends Controller
 
     public function destroy($id)
     {
-        $langganan = langganan::findOrFail($id);
+        $langganan = Langganan::findOrFail($id);
         $langganan->delete();
 
         return redirect()->route('langganan.index')->with('success', 'Langganan berhasil dihapus');

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\gudang;
+use App\Models\Gudang;
 
-class gudangController extends Controller
+class GudangController extends Controller
 {
     public function index()
     {
-        $gudang = gudang::all();
+        $gudang = Gudang::all();
         return view('gudang.index', compact('gudang'));
     }
 
@@ -28,20 +28,20 @@ class gudangController extends Controller
             'status_gudang' => 'required|string',
         ]);
 
-        gudang::create($validated);
+        Gudang::create($validated);
 
         return redirect()->route('gudang.index')->with('success', 'Gudang berhasil ditambahkan');
     }
 
     public function show($id)
     {
-        $gudang = gudang::findOrFail($id);
+        $gudang = Gudang::findOrFail($id);
         return view('gudang.show', compact('gudang'));
     }
 
     public function edit($id)
     {
-        $gudang = gudang::findOrFail($id);
+        $gudang = Gudang::findOrFail($id);
         return view('gudang.edit', compact('gudang'));
     }
 
@@ -55,7 +55,7 @@ class gudangController extends Controller
             'status_gudang' => 'required|string',
         ]);
 
-        $gudang = gudang::findOrFail($id);
+        $gudang = Gudang::findOrFail($id);
         $gudang->update($validated);
 
         return redirect()->route('gudang.index')->with('success', 'Gudang berhasil diupdate');
@@ -63,7 +63,7 @@ class gudangController extends Controller
 
     public function destroy($id)
     {
-        $gudang = gudang::findOrFail($id);
+        $gudang = Gudang::findOrFail($id);
         $gudang->delete();
 
         return redirect()->route('gudang.index')->with('success', 'Gudang berhasil dihapus');

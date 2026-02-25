@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\kurir;
+use App\Models\Kurir;
 
-class kurirController extends Controller
+class KurirController extends Controller
 {
     public function index()
     {
-        $kurir = kurir::all();
+        $kurir = Kurir::all();
         return view('kurir.index', compact('kurir'));
     }
 
@@ -30,20 +30,20 @@ class kurirController extends Controller
             'catatan' => 'nullable|string',
         ]);
 
-        kurir::create($validated);
+        Kurir::create($validated);
 
         return redirect()->route('kurir.index')->with('success', 'Kurir berhasil ditambahkan');
     }
 
     public function show($id)
     {
-        $kurir = kurir::findOrFail($id);
+        $kurir = Kurir::findOrFail($id);
         return view('kurir.show', compact('kurir'));
     }
 
     public function edit($id)
     {
-        $kurir = kurir::findOrFail($id);
+        $kurir = Kurir::findOrFail($id);
         return view('kurir.edit', compact('kurir'));
     }
 
@@ -59,7 +59,7 @@ class kurirController extends Controller
             'catatan' => 'nullable|string',
         ]);
 
-        $kurir = kurir::findOrFail($id);
+        $kurir = Kurir::findOrFail($id);
         $kurir->update($validated);
 
         return redirect()->route('kurir.index')->with('success', 'Kurir berhasil diupdate');
@@ -67,7 +67,7 @@ class kurirController extends Controller
 
     public function destroy($id)
     {
-        $kurir = kurir::findOrFail($id);
+        $kurir = Kurir::findOrFail($id);
         $kurir->delete();
 
         return redirect()->route('kurir.index')->with('success', 'Kurir berhasil dihapus');

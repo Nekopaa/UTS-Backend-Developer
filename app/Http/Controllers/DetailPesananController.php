@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\detail_pesanan;
+use App\Models\DetailPesanan;
 
-class detailPesananController extends Controller
+class DetailPesananController extends Controller
 {
     // Detail pesanan is managed through Transaksi
 }
