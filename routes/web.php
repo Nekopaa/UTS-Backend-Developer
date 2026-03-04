@@ -44,3 +44,4 @@ Route::resource('riwayat-stock', RiwayatStockController::class)->only(['index', 
 
 // Detail Pesanan: dikelola otomatis lewat Transaksi
 Route::resource('detail-pesanan', DetailPesananController::class)->only(['index', 'show']);
+t
