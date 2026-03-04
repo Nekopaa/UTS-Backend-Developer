@@ -7,67 +7,24 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## About this project
+# 💧 Rindu Water — Sistem Informasi Penjualan Air Minum
 
 
-UserController: Manage system users (Admin/Staff).
-ProdukAirController: Manage water products and stock.
-PelangganController: Manage customer database.
-TransaksiController: Manage sales and orders.
-AdminController: Generic admin management.
-DetailPesananController: Manage line items for orders.
-GudangController: Manage warehouse/inventory locations.
-KurirController: Manage delivery personnel.
-LanggananController: Manage subscription plans/customers.
-LaporanPenjualanController: View and manage sales reports.
-PengirimanController: Manage delivery status and tracking.
-RiwayatStockController: Track stock movements (In/Out).
+**Rindu Water** adalah aplikasi web sistem informasi manajemen untuk usaha penjualan air minum isi ulang/galon. Project ini dibuat sebagai tugas semester 2 dengan tujuan mendigitalisasi proses bisnis toko air minum, mulai dari pencatatan produk, pengelolaan pelanggan, pemrosesan transaksi, hingga pelaporan penjualan.
+
+Aplikasi ini dibangun menggunakan **Laravel** (PHP Framework)
+
+---
+
+## Cara Menjalankan Aplikasi
+
+1. Clone repository ini
+2. Jalankan `composer install` dan `npm install`
+3. Salin `.env.example` menjadi `.env`, lalu isi konfigurasi database
+4. Jalankan `php artisan key:generate`
+5. Jalankan `php artisan migrate` untuk membuat tabel database
+6. Jalankan server dengan `php artisan serve`
+7. Buka browser dan akses `http://localhost:8000`
+
+project ini dikumpulkan oleh Izan
