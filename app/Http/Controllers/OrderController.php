@@ -25,6 +25,7 @@ class OrderController extends Controller
             'no_telepon' => 'required|string|max:20',
             'alamat' => 'required|string',
             'catatan' => 'nullable|string',
+            'metode_pengiriman' => 'required|string|in:standart,sameday,instant,kilat',
             'berlangganan' => 'nullable|in:sekali,harian,mingguan,bulanan',
             'tanggal_mulai' => 'nullable|date',
         ]);
@@ -32,9 +33,10 @@ class OrderController extends Controller
         try {
             DB::beginTransaction();
 
-            $produk = ProdukAir::findOrFail($request->id_produk);
+            $produk = ProdukAir::where('id_produk', $request->id_produk)->lockForUpdate()->firstOrFail();
 
             if ($produk->stok < $request->jumlah) {
+                DB::rollBack();
                 return redirect()->back()->with('error', 'Stok produk tidak mencukupi untuk jumlah pesanan Anda.');
             }
 
@@ -60,7 +62,17 @@ class OrderController extends Controller
                 ]);
             }
 
-            $totalBayar = $produk->harga * $request->jumlah;
+            // Calculate shipping cost
+            $biayaPengiriman = 0;
+            if ($request->metode_pengiriman === 'standart') {
+                $biayaPengiriman = 5000;
+            } elseif ($request->metode_pengiriman === 'sameday') {
+                $biayaPengiriman = 15000;
+            } elseif ($request->metode_pengiriman === 'instant' || $request->metode_pengiriman === 'kilat') {
+                $biayaPengiriman = 25000;
+            }
+
+            $totalBayar = ($produk->harga * $request->jumlah) + $biayaPengiriman;
             $kodeInvoice = 'INV-' . time() . '-' . rand(100, 999);
 
             // Create Transaksi
@@ -73,6 +85,8 @@ class OrderController extends Controller
                 'status_transaksi' => 'dibayar', // Auto-approve payment in mock flow
                 'kode_invoice' => $kodeInvoice,
                 'catatan' => $request->catatan,
+                'metode_pengiriman' => $request->metode_pengiriman,
+                'biaya_pengiriman' => $biayaPengiriman,
             ]);
 
             // Create DetailPesanan
@@ -86,17 +100,41 @@ class OrderController extends Controller
             // Adjust Product Stock
             $produk->decrement('stok', $request->jumlah);
 
+            // Assign courier automatically
+            $kurir = \App\Models\Kurir::where('status_kurir', 'aktif')->inRandomOrder()->first();
+
+            // Set delivery date based on shipping method rules
+            $tanggalPengiriman = now();
+            if ($request->metode_pengiriman === 'standart') {
+                $tanggalPengiriman = now()->addDays(1);
+            } elseif ($request->metode_pengiriman === 'sameday') {
+                if (now()->hour >= 8) {
+                    $tanggalPengiriman = now()->addDay();
+                }
+            } elseif ($request->metode_pengiriman === 'instant' || $request->metode_pengiriman === 'kilat') {
+                $tanggalPengiriman = now()->addHours(3);
+            }
+
+            \App\Models\Pengiriman::create([
+                'id_transaksi' => $transaksi->id_transaksi,
+                'id_kurir' => $kurir ? $kurir->id_kurir : null,
+                'alamat_tujuan' => $request->alamat,
+                'tanggal_pengiriman' => $tanggalPengiriman,
+                'status_pengiriman' => 'dijadwalkan',
+                'catatan_kurir' => null,
+            ]);
+
             // Handle optional Langganan (Subscription)
             if ($request->has('berlangganan') && in_array($request->berlangganan, ['harian', 'mingguan', 'bulanan'])) {
                 $tanggalMulai = $request->input('tanggal_mulai') ? \Carbon\Carbon::parse($request->input('tanggal_mulai')) : now();
                 
                 // Calculate ending date based on subscription cycle
                 if ($request->berlangganan === 'mingguan') {
-                    $tanggalBerakhir = $tanggalMulai->copy()->addDays(7);
+                    $tanggalBerakhir = $tanggalMulai->copy()->addMonth(); // 1 month duration (4 deliveries)
                 } elseif ($request->berlangganan === 'bulanan') {
-                    $tanggalBerakhir = $tanggalMulai->copy()->addMonth();
+                    $tanggalBerakhir = $tanggalMulai->copy()->addYear(); // 1 year duration (12 deliveries)
                 } else { // harian
-                    $tanggalBerakhir = $tanggalMulai->copy()->addMonth();
+                    $tanggalBerakhir = $tanggalMulai->copy()->addDays(30); // 30 days duration (30 deliveries)
                 }
 
                 $langganan = Langganan::create([

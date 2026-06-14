@@ -23,13 +23,18 @@ class ProdukAirController extends Controller
     {
         $validated = $request->validate([
             'nama_produk' => 'required|string|max:255',
-            'jenis_kemasan' => 'required|string',
+            'jenis_kemasan' => 'required|in:galon,botol,gelas',
             'kapasitas' => 'required|string',
-            'harga' => 'required|numeric',
-            'stok' => 'required|integer',
-            'status_produk' => 'required|string',
-            'foto_produk' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|integer|min:0',
+            'status_produk' => 'required|in:tersedia,habis',
+            'foto_produk' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:10240',
             'deskripsi' => 'nullable|string',
+        ], [
+            'foto_produk.uploaded' => 'Foto gagal diupload. Pastikan ukuran file tidak melebihi 10MB sesuai batas server.',
+            'foto_produk.image' => 'File harus berupa gambar.',
+            'foto_produk.mimes' => 'Format gambar harus jpeg, png, jpg, webp, atau gif.',
+            'foto_produk.max' => 'Ukuran gambar maksimal 10MB.',
         ]);
 
         if ($request->hasFile('foto_produk')) {
@@ -60,13 +65,18 @@ class ProdukAirController extends Controller
 
         $validated = $request->validate([
             'nama_produk' => 'required|string|max:255',
-            'jenis_kemasan' => 'required|string',
+            'jenis_kemasan' => 'required|in:galon,botol,gelas',
             'kapasitas' => 'required|string',
-            'harga' => 'required|numeric',
-            'stok' => 'required|integer',
-            'status_produk' => 'required|string',
-            'foto_produk' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|integer|min:0',
+            'status_produk' => 'required|in:tersedia,habis',
+            'foto_produk' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:10240',
             'deskripsi' => 'nullable|string',
+        ], [
+            'foto_produk.uploaded' => 'Foto gagal diupload. Pastikan ukuran file tidak melebihi 10MB sesuai batas server.',
+            'foto_produk.image' => 'File harus berupa gambar.',
+            'foto_produk.mimes' => 'Format gambar harus jpeg, png, jpg, webp, atau gif.',
+            'foto_produk.max' => 'Ukuran gambar maksimal 10MB.',
         ]);
 
         if ($request->hasFile('foto_produk')) {

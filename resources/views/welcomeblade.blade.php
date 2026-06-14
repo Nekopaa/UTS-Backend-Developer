@@ -19,80 +19,90 @@
         <script src="https://cdn.tailwindcss.com"></script>
     @endif
 
-    <!-- Neo-brutalism Theme Custom Styles -->
+    <!-- Soft Glassmorphic SaaS Design System Custom Styles -->
     <style>
         :root {
-            --neo-bg: #F4F2EC;
+            --neo-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
             --neo-yellow: #facc15;
-            --neo-blue: #2563eb;
+            --neo-blue: #4f46e5;
             --neo-cyan: #06b6d4;
             --neo-purple: #a78bfa;
-            --neo-border-color: #000000;
+            --neo-border-color: rgba(226, 232, 240, 0.8);
+            --neo-radius: 20px;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--neo-bg);
-            color: #000000;
+            background: var(--neo-bg);
+            color: #1e293b;
             scroll-behavior: smooth;
+            min-height: 100vh;
         }
 
-        /* Neo-brutalist Card */
+        /* Soft Glassmorphic Card */
         .neo-card {
-            background: #ffffff;
-            border: 3px solid var(--neo-border-color);
-            box-shadow: 6px 6px 0px var(--neo-border-color);
-            border-radius: 16px;
-            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: var(--neo-radius);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.03), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .neo-card:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 9px 9px 0px var(--neo-border-color);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.06), 0 8px 20px -6px rgba(0, 0, 0, 0.03);
         }
 
         /* Interactive Buttons */
         .neo-btn {
             background: #ffffff;
-            color: #000000;
-            border: 3px solid var(--neo-border-color);
-            box-shadow: 4px 4px 0px var(--neo-border-color);
+            border: 1px solid rgba(226, 232, 240, 0.8);
             border-radius: 12px;
-            font-weight: 800;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            color: #334155;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
         }
 
         .neo-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px var(--neo-border-color);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            background: #f8fafc;
         }
 
         .neo-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px var(--neo-border-color);
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
         }
 
         .neo-btn-primary {
-            background: var(--neo-blue);
-            color: #ffffff;
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+            color: #ffffff !important;
+            border: 0 !important;
+            box-shadow: 0 4px 12px 0 rgba(79, 70, 229, 0.2) !important;
         }
 
         .neo-btn-primary:hover {
-            background: #1d4ed8;
+            box-shadow: 0 8px 20px 0 rgba(79, 70, 229, 0.3) !important;
+            background: linear-gradient(135deg, #818cf8 0%, #4f46e5 100%) !important;
         }
 
         .neo-btn-yellow {
             background: var(--neo-yellow);
-            color: #000000;
+            color: #1e293b;
         }
 
         .neo-btn-cyan {
-            background: var(--neo-cyan);
-            color: #000000;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%) !important;
+            color: #ffffff !important;
+            border: 0 !important;
+            box-shadow: 0 4px 12px 0 rgba(6, 182, 212, 0.2) !important;
         }
 
         /* Micro Floating Animation */
@@ -109,41 +119,41 @@
 <body class="antialiased overflow-x-hidden">
 
     <!-- Header Navigation -->
-    <header class="fixed top-0 left-0 w-full z-50 py-4 bg-transparent border-b-3 border-transparent transition-all duration-300" id="main-header">
+    <header class="fixed top-0 left-0 w-full z-50 py-4 bg-transparent transition-all duration-300" id="main-header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div id="main-nav-card" class="bg-white border-3 border-black shadow-[4px_4px_0px_#000000] rounded-2xl px-6 py-4 flex items-center justify-between transition-all duration-300">
+            <div id="main-nav-card" class="bg-white/80 border border-slate-200/80 shadow-md backdrop-blur-md rounded-2xl px-6 py-4 flex items-center justify-between transition-all duration-300">
                 <!-- Brand Logo -->
                 <a href="#" class="flex items-center space-x-2 group">
-                    <span class="p-1 bg-[#facc15] border-2 border-black rounded-full text-black shadow-[2px_2px_0px_#000000] group-hover:scale-105 transition-transform duration-300">
+                    <span class="p-1.5 bg-indigo-50 border border-indigo-100 rounded-full text-indigo-600 group-hover:scale-105 transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.105-6 11.25-6 11.25S7.5 17.605 7.5 10.5a6 6 0 1112 0z" />
                         </svg>
                     </span>
-                    <span class="text-xl font-extrabold tracking-tight text-black">Rindu <span class="text-blue-600">Water</span></span>
+                    <span class="text-xl font-extrabold tracking-tight text-slate-800">Rindu <span class="text-indigo-600">Water</span></span>
                 </a>
 
                 <!-- Navigation Links -->
-                <nav class="hidden md:flex items-center space-x-8 text-sm font-extrabold text-black">
-                    <a href="#home" class="hover:text-blue-600 transition-colors">Home</a>
-                    <a href="#keunggulan" class="hover:text-blue-600 transition-colors">Keunggulan</a>
-                    <a href="#produk" class="hover:text-blue-600 transition-colors">Produk Kami</a>
-                    <a href="#layanan" class="hover:text-blue-600 transition-colors">Jadwal Langganan</a>
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+                    <a href="#home" class="hover:text-indigo-600 transition-colors">Home</a>
+                    <a href="#keunggulan" class="hover:text-indigo-600 transition-colors">Keunggulan</a>
+                    <a href="#produk" class="hover:text-indigo-600 transition-colors">Produk Kami</a>
+                    <a href="#layanan" class="hover:text-indigo-600 transition-colors">Jadwal Langganan</a>
                 </nav>
 
                 <!-- Authentication CTAs -->
                 <div class="flex items-center space-x-4">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="neo-btn px-5 py-2.5 text-sm font-bold bg-[#facc15]">
+                        <a href="{{ url('/dashboard') }}" class="neo-btn px-5 py-2.5 text-sm font-bold bg-[#facc15] border-transparent text-slate-800 shadow-sm">
                             Dashboard
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="inline">
                             @csrf
-                            <button type="submit" class="neo-btn px-5 py-2.5 text-sm font-bold bg-[#f43f5e] text-white">
+                            <button type="submit" class="neo-btn px-5 py-2.5 text-sm font-bold bg-rose-500 border-transparent text-white shadow-sm">
                                 Keluar
                             </button>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm font-extrabold text-black hover:text-blue-600 transition-colors px-3 py-2">
+                        <a href="{{ route('login') }}" class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors px-3 py-2">
                             Masuk
                         </a>
                         @if (Route::has('register'))
@@ -159,21 +169,25 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative pt-52 pb-44 overflow-hidden">
+        <!-- Decorative Background Blobs -->
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-cyan-300/30 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-400/20 rounded-full blur-3xl pointer-events-none"></div>
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <!-- Hero Left Information -->
                 <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-                    <span class="inline-flex items-center px-4 py-1.5 rounded-xl text-xs font-extrabold tracking-wider text-black bg-[#facc15] border-2 border-black shadow-[2px_2px_0px_#000000] uppercase">
-                        💧 KEMURNIAN TERJAMIN & STERIL
+                    <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-indigo-700 bg-indigo-50 border border-indigo-100 uppercase">
+                        AIR ALKALI TERIONISASI & SEHAT
                     </span>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-black leading-none sm:leading-tight lg:leading-[1.15]">
-                        Kemurnian Alami dari Pegunungan,<br class="hidden sm:inline">
-                        <span class="mt-3 sm:mt-4 bg-[#06b6d4] text-black px-4 py-2 border-3 border-black inline-block rounded-xl shadow-[4px_4px_0px_#000000] transform -rotate-1">
-                            Langsung ke Rumah Anda
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-800 leading-none sm:leading-tight lg:leading-[1.15]">
+                        Hidrasi pH Tinggi untuk Kesehatan,<br class="hidden sm:inline">
+                        <span class="mt-3 sm:mt-4 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white px-4 py-2 inline-block rounded-xl shadow-md transform -rotate-1">
+                            Keseimbangan Tubuh Anda
                         </span>
                     </h1>
-                    <p class="text-lg text-slate-700 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-semibold">
-                        Rindu Water menghadirkan air mineral pegunungan berkualitas tinggi yang steril, kaya mineral alami, serta diproses higienis untuk menjaga hidrasi terbaik keluarga tercinta.
+                    <p class="text-lg text-slate-500 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Rindu Water menghadirkan air alkali terionisasi dengan tingkat pH optimal untuk membantu menetralkan kadar asam tubuh, meningkatkan hidrasi seluler, dan mendukung kebugaran harian Anda secara maksimal.
                     </p>
 
                     <!-- Interactive CTAs -->
@@ -181,24 +195,24 @@
                         <a href="#produk" class="w-full sm:w-auto px-8 py-4 rounded-xl text-center font-extrabold text-white neo-btn neo-btn-primary text-base">
                             Lihat Produk Kami
                         </a>
-                        <a href="#keunggulan" class="w-full sm:w-auto px-8 py-4 rounded-xl text-center font-extrabold text-black neo-btn text-base">
+                        <a href="#keunggulan" class="w-full sm:w-auto px-8 py-4 rounded-xl text-center font-extrabold text-slate-700 neo-btn text-base">
                             Pelajari Keunggulan
                         </a>
                     </div>
 
                     <!-- Stats grid widget -->
-                    <div class="grid grid-cols-3 gap-4 pt-8 max-w-lg mx-auto lg:mx-0 border-t-3 border-black">
+                    <div class="grid grid-cols-3 gap-4 pt-8 max-w-lg mx-auto lg:mx-0 border-t border-slate-200">
                         <div class="text-center lg:text-left">
-                            <span class="block text-2xl lg:text-3xl font-black text-black">10k+</span>
-                            <span class="text-xs font-extrabold text-slate-600 uppercase tracking-wider">Pelanggan</span>
+                            <span class="block text-2xl lg:text-3xl font-black text-slate-800">10k+</span>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Pelanggan</span>
                         </div>
-                        <div class="text-center lg:text-left border-x-3 border-black px-4">
-                            <span class="block text-2xl lg:text-3xl font-black text-[#2563eb]">99.9%</span>
-                            <span class="text-xs font-extrabold text-slate-600 uppercase tracking-wider">Kemurnian</span>
+                        <div class="text-center lg:text-left border-x border-slate-200 px-4">
+                            <span class="block text-2xl lg:text-3xl font-black text-indigo-600">99.9%</span>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Kemurnian</span>
                         </div>
                         <div class="text-center lg:text-left pl-4">
-                            <span class="block text-2xl lg:text-3xl font-black text-black">15+</span>
-                            <span class="text-xs font-extrabold text-slate-600 uppercase tracking-wider">Wilayah</span>
+                            <span class="block text-2xl lg:text-3xl font-black text-slate-800">15+</span>
+                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Wilayah</span>
                         </div>
                     </div>
                 </div>
@@ -238,62 +252,62 @@
     </section>
 
     <!-- Keunggulan Section -->
-    <section id="keunggulan" class="py-24 border-t-4 border-black bg-white">
+    <section id="keunggulan" class="py-24 border-t border-slate-100 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <!-- Section Title -->
             <div class="text-center max-w-3xl mx-auto mb-18 space-y-4">
-                <span class="text-xs font-extrabold tracking-widest text-[#2563eb] bg-[#facc15] px-3 py-1 border-2 border-black rounded-lg uppercase">✨ Mengapa Memilih Kami?</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-black">
+                <span class="text-xs font-bold tracking-widest text-indigo-700 bg-indigo-50 px-3 py-1 border border-indigo-100 rounded-full uppercase">Mengapa Memilih Kami?</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-800">
                     Kualitas Terbaik untuk Hidrasi Sehat Anda
                 </h2>
-                <div class="w-24 h-2 bg-black rounded-full mx-auto"></div>
+                <div class="w-24 h-1 bg-indigo-500 rounded-full mx-auto mt-2"></div>
             </div>
 
             <!-- Features Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="neo-card p-8 bg-[#06b6d4] flex flex-col justify-between group">
+                <div class="neo-card p-8 bg-cyan-50/70 border border-cyan-100/70 flex flex-col justify-between group">
                     <div>
-                        <div class="w-14 h-14 rounded-xl bg-white border-3 border-black shadow-[3px_3px_0px_#000000] flex items-center justify-center text-black mb-6">
-                            <!-- Mountain Icon -->
+                        <div class="w-14 h-14 rounded-xl bg-white border border-cyan-150 shadow-sm flex items-center justify-center text-cyan-600 mb-6">
+                            <!-- Droplet Icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1.5M12 18.75V21m-7.5-7.5h1.5m12 0h1.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.105-6 11.25-6 11.25S7.5 17.605 7.5 10.5a6 6 0 1112 0z" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-extrabold text-black mb-3">100% Mata Air Pilihan</h3>
-                        <p class="text-black font-semibold text-sm leading-relaxed">
-                            Diambil langsung dari sumber mata air vulkanik alam terdalam yang kaya akan nutrisi mineral mikro penting yang dibutuhkan tubuh setiap hari.
+                        <h3 class="text-xl font-extrabold text-slate-800 mb-3">Air Alkali pH Optimal</h3>
+                        <p class="text-slate-600 font-medium text-sm leading-relaxed">
+                            Diproses dengan teknologi elektrolisis modern untuk memisahkan molekul air asam, menghasilkan air minum alkali sehat dengan pH tinggi.
                         </p>
                     </div>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="neo-card p-8 bg-[#facc15] flex flex-col justify-between group">
+                <div class="neo-card p-8 bg-amber-50/70 border border-amber-100/70 flex flex-col justify-between group">
                     <div>
-                        <div class="w-14 h-14 rounded-xl bg-white border-3 border-black shadow-[3px_3px_0px_#000000] flex items-center justify-center text-black mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-white border border-amber-150 shadow-sm flex items-center justify-center text-amber-600 mb-6">
                             <!-- Shield check icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-extrabold text-black mb-3">Filtrasi Ozon & UV</h3>
-                        <p class="text-black font-semibold text-sm leading-relaxed">
-                            Diproses dengan sistem filtrasi canggih multi-tahap, sterilisasi ultraviolet, serta ozonisasi murni tanpa sentuhan tangan manusia demi keamanan Anda.
+                        <h3 class="text-xl font-extrabold text-slate-800 mb-3">Filtrasi & Ionisasi</h3>
+                        <p class="text-slate-600 font-medium text-sm leading-relaxed">
+                            Diproses dengan sistem filtrasi mikro canggih, sterilisasi ultraviolet, serta proses ionisasi elektrikal berkualitas tinggi demi kesehatan Anda.
                         </p>
                     </div>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="neo-card p-8 bg-[#a78bfa] flex flex-col justify-between group">
+                <div class="neo-card p-8 bg-indigo-50/70 border border-indigo-100/70 flex flex-col justify-between group">
                     <div>
-                        <div class="w-14 h-14 rounded-xl bg-white border-3 border-black shadow-[3px_3px_0px_#000000] flex items-center justify-center text-black mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-white border border-indigo-150 shadow-sm flex items-center justify-center text-indigo-600 mb-6">
                             <!-- Truck Icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM19.5 18.75a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM2.25 15h13.5m-10.5-3h10.5m-10.5-3h10.5m-3.75-3H6.75A2.25 2.25 0 004.5 8.25V15h15V8.25A2.25 2.25 0 0017.25 6h-3.75Z" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-extrabold text-black mb-3">Layanan Pengiriman Kilat</h3>
-                        <p class="text-black font-semibold text-sm leading-relaxed">
+                        <h3 class="text-xl font-extrabold text-slate-800 mb-3">Layanan Pengiriman Kilat</h3>
+                        <p class="text-slate-600 font-medium text-sm leading-relaxed">
                             Sistem manajemen pengiriman otomatis terjadwal yang memastikan pasokan air bersih murni Anda selalu terisi tepat waktu tanpa hambatan.
                         </p>
                     </div>
@@ -303,18 +317,18 @@
     </section>
 
     <!-- Produk Section -->
-    <section id="produk" class="py-24 border-t-4 border-black">
+    <section id="produk" class="py-24 border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                <span class="text-xs font-extrabold tracking-widest text-[#2563eb] bg-[#facc15] px-3 py-1 border-2 border-black rounded-lg uppercase">📦 Varian Produk Air</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-black">
+                <span class="text-xs font-bold tracking-widest text-indigo-700 bg-indigo-50 px-3 py-1 border border-indigo-100 rounded-full uppercase">Varian Produk Air</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-800">
                     Produk Air Mineral Premium Rindu Water
                 </h2>
-                <p class="text-slate-700 font-bold max-w-lg mx-auto">
+                <p class="text-slate-500 max-w-lg mx-auto">
                     Pilih kemasan yang sesuai dengan kebutuhan hidrasi harian Anda, mulai dari ukuran personal praktis hingga kebutuhan galon keluarga.
                 </p>
-                <div class="w-24 h-2 bg-black rounded-full mx-auto"></div>
+                <div class="w-24 h-1 bg-indigo-500 rounded-full mx-auto mt-2"></div>
             </div>
 
             <!-- Products Grid -->
@@ -324,36 +338,17 @@
                         <!-- Single Product Card -->
                         <div class="neo-card p-6 flex flex-col justify-between relative overflow-hidden group">
                             <div>
-                                <!-- Product Image Container (Outlined brutal style) -->
-                                <div class="w-full h-56 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden p-4 bg-white border-3 border-black group-hover:scale-[1.02] transition-transform duration-150">
+                                <!-- Product Image Container (Sleek modern style) -->
+                                <div class="w-full h-56 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden p-4 bg-slate-50/50 border border-slate-200/80 group-hover:scale-[1.02] transition-transform duration-150">
                                     @if($p->foto_produk)
-                                        <img src="{{ asset('storage/' . $p->foto_produk) }}" alt="{{ $p->nama_produk }}" class="max-h-full max-w-full object-contain" />
+                                        <img src="{{ asset('storage/' . $p->foto_produk) }}" alt="{{ $p->nama_produk }}" class="max-h-full max-w-full object-cover w-full h-full rounded-lg" />
                                     @else
-                                        <!-- Custom outlined brutalist SVGs based on kemasan type -->
                                         @if($p->jenis_kemasan == 'botol')
-                                            <!-- Outlined Botol SVG -->
-                                            <svg viewBox="0 0 100 200" fill="none" class="h-44 w-auto">
-                                                <rect x="35" y="80" width="30" height="100" rx="6" fill="#ffffff" stroke="#000000" stroke-width="4"/>
-                                                <path d="M43 80 L43 50 L57 50 L57 80" fill="none" stroke="#000000" stroke-width="4"/>
-                                                <rect x="42" y="38" width="16" height="12" fill="#2563eb" stroke="#000000" stroke-width="3"/>
-                                                <rect x="38" y="100" width="24" height="60" rx="3" fill="#06b6d4" stroke="#000000" stroke-width="3"/>
-                                            </svg>
+                                            <img src="{{ asset('images/produk_botol.jpg') }}" alt="{{ $p->nama_produk }}" class="w-full h-full object-cover rounded-lg" />
                                         @elseif($p->jenis_kemasan == 'galon')
-                                            <!-- Outlined Galon SVG -->
-                                            <svg viewBox="0 0 100 200" fill="none" class="h-44 w-auto">
-                                                <rect x="25" y="60" width="50" height="120" rx="10" fill="#ffffff" stroke="#000000" stroke-width="5"/>
-                                                <path d="M42 60 L42 35 L58 35 L58 60" fill="none" stroke="#000000" stroke-width="5"/>
-                                                <rect x="40" y="20" width="20" height="15" fill="#facc15" stroke="#000000" stroke-width="4"/>
-                                                <rect x="29" y="85" width="42" height="85" rx="6" fill="#06b6d4" stroke="#000000" stroke-width="4"/>
-                                                <line x1="29" y1="110" x2="71" y2="110" stroke="#000000" stroke-width="3"/>
-                                            </svg>
+                                            <img src="{{ asset('images/produk_galon.jpg') }}" alt="{{ $p->nama_produk }}" class="w-full h-full object-cover rounded-lg" />
                                         @elseif($p->jenis_kemasan == 'gelas')
-                                            <!-- Outlined Cup SVG -->
-                                            <svg viewBox="0 0 100 200" fill="none" class="h-44 w-auto">
-                                                <path d="M25 60 L30 160 C30 166 40 166 40 166 L60 166 C60 166 70 166 70 160 L75 60" fill="#ffffff" stroke="#000000" stroke-width="4"/>
-                                                <ellipse cx="50" cy="60" rx="25" ry="8" fill="#facc15" stroke="#000000" stroke-width="4"/>
-                                                <path d="M28 85 L32 155 L68 155 L72 85 Z" fill="#06b6d4" stroke="#000000" stroke-width="3"/>
-                                            </svg>
+                                            <img src="{{ asset('images/produk_gelas.jpg') }}" alt="{{ $p->nama_produk }}" class="w-full h-full object-cover rounded-lg" />
                                         @else
                                             <!-- Droplet SVG -->
                                             <svg viewBox="0 0 100 200" fill="none" class="h-44 w-auto text-blue-500">
@@ -363,7 +358,7 @@
                                     @endif
                                     
                                     <!-- Dynamic badge on capacity -->
-                                    <span class="absolute bottom-3 left-3 bg-[#facc15] text-xs font-extrabold text-black px-3 py-1 rounded border-2 border-black shadow-[2px_2px_0px_#000000]">
+                                    <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-xs font-bold text-slate-800 px-3 py-1 rounded-lg border border-slate-200/60 shadow-sm">
                                         {{ $p->kapasitas }}
                                     </span>
                                 </div>
@@ -372,27 +367,12 @@
                                 <div class="space-y-3">
                                     <div class="flex items-center justify-between">
                                         <!-- Packaging type badge -->
-                                        <span class="text-xs font-black uppercase tracking-wider text-black bg-[#facc15] px-2.5 py-1 rounded border-2 border-black">
+                                        <span class="text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-100">
                                             {{ $p->jenis_kemasan }}
                                         </span>
-
-                                        <!-- Stock status Badge -->
-                                        @if($p->stok > 100)
-                                            <span class="text-xs font-black text-black bg-[#4ade80] px-2.5 py-0.5 rounded border-2 border-black">
-                                                Melimpah
-                                            </span>
-                                        @elseif($p->stok > 0)
-                                            <span class="text-xs font-black text-black bg-[#fbe5c6] px-2.5 py-0.5 rounded border-2 border-black">
-                                                Terbatas
-                                            </span>
-                                        @else
-                                            <span class="text-xs font-black text-white bg-[#f43f5e] px-2.5 py-0.5 rounded border-2 border-black">
-                                                Habis
-                                            </span>
-                                        @endif
                                     </div>
 
-                                    <h3 class="text-xl font-black text-black leading-tight hover:text-blue-600 transition-colors">
+                                    <h3 class="text-xl font-extrabold text-slate-800 leading-tight hover:text-indigo-600 transition-colors">
                                         {{ $p->nama_produk }}
                                     </h3>
                                     <p class="text-sm font-semibold text-slate-600 line-clamp-2 h-10">
@@ -401,14 +381,10 @@
                                 </div>
                             </div>
 
-                            <!-- Footer Price and Action Button -->
-                            <div class="mt-8 pt-4 border-t-3 border-black flex items-center justify-between gap-4">
-                                <div>
-                                    <span class="block text-xs font-bold text-slate-500">Harga Per Unit</span>
-                                    <span class="text-xl font-black text-black">Rp {{ number_format($p->harga, 0, ',', '.') }}</span>
-                                </div>
-                                <a href="{{ url('/dashboard') }}" class="neo-btn neo-btn-primary px-4 py-3 text-center text-sm flex-1">
-                                    Pesan Sekarang
+                            <!-- Footer Action Button -->
+                            <div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
+                                <a href="{{ route('login') }}" class="neo-btn neo-btn-primary px-4 py-3 text-center text-sm flex-1">
+                                    Lihat Harga & Pesan
                                 </a>
                             </div>
                         </div>
@@ -420,79 +396,58 @@
                     <!-- Card 1 -->
                     <div class="neo-card p-6 flex flex-col justify-between group">
                         <div>
-                            <div class="w-full h-56 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden p-4 bg-white border-3 border-black">
-                                <svg viewBox="0 0 100 200" fill="none" class="h-44 w-auto">
-                                    <rect x="25" y="60" width="50" height="120" rx="10" fill="#ffffff" stroke="#000000" stroke-width="5"/>
-                                    <path d="M42 60 L42 35 L58 35 L58 60" fill="none" stroke="#000000" stroke-width="5"/>
-                                    <rect x="40" y="20" width="20" height="15" fill="#facc15" stroke="#000000" stroke-width="4"/>
-                                    <rect x="29" y="85" width="42" height="85" rx="6" fill="#06b6d4" stroke="#000000" stroke-width="4"/>
-                                    <line x1="29" y1="110" x2="71" y2="110" stroke="#000000" stroke-width="3"/>
-                                </svg>
-                                <span class="absolute bottom-3 left-3 bg-[#facc15] text-xs font-extrabold text-black px-3 py-1 rounded border-2 border-black shadow-[2px_2px_0px_#000000]">19 Liter</span>
+                            <div class="w-full h-56 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden bg-slate-50 border border-slate-200">
+                                <img src="{{ asset('images/produk_galon.jpg') }}" alt="Galon Rindu Keluarga" class="w-full h-full object-cover rounded-lg" />
+                                <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-xs font-bold text-slate-800 px-3 py-1 rounded-lg border border-slate-200/60 shadow-sm">19 Liter</span>
                             </div>
                             <div class="space-y-3">
                                 <div class="flex items-center justify-between">
-                                    <span class="text-xs font-black uppercase tracking-wider text-black bg-[#facc15] px-2.5 py-1 rounded border-2 border-black">Galon</span>
-                                    <span class="text-xs font-black text-black bg-[#4ade80] px-2.5 py-0.5 rounded border-2 border-black">Tersedia</span>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-100">Galon</span>
                                 </div>
-                                <h3 class="text-xl font-black text-black">Galon Rindu Keluarga</h3>
+                                <h3 class="text-xl font-extrabold text-slate-800">Galon Rindu Keluarga</h3>
                                 <p class="text-sm font-semibold text-slate-600 line-clamp-2">Kebutuhan hidrasi keluarga terpenuhi dengan pasokan galon 19 Liter steril, berkualitas, serta hemat.</p>
                             </div>
                         </div>
-                        <div class="mt-8 pt-4 border-t-3 border-black flex items-center justify-between gap-4">
-                            <div><span class="block text-xs font-bold text-slate-500">Harga</span><span class="text-xl font-black text-black">Rp 19.000</span></div>
-                            <a href="{{ url('/dashboard') }}" class="neo-btn neo-btn-primary px-4 py-3 text-sm flex-1">Pesan Sekarang</a>
+                        <div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
+                            <a href="{{ route('login') }}" class="neo-btn neo-btn-primary px-4 py-3 text-sm flex-1">Lihat Harga & Pesan</a>
                         </div>
                     </div>
                     <!-- Card 2 -->
                     <div class="neo-card p-6 flex flex-col justify-between group">
                         <div>
-                            <div class="w-full h-56 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden p-4 bg-white border-3 border-black">
-                                <svg viewBox="0 0 100 200" fill="none" class="h-44 w-auto">
-                                    <rect x="35" y="80" width="30" height="100" rx="6" fill="#ffffff" stroke="#000000" stroke-width="4"/>
-                                    <path d="M43 80 L43 50 L57 50 L57 80" fill="none" stroke="#000000" stroke-width="4"/>
-                                    <rect x="42" y="38" width="16" height="12" fill="#2563eb" stroke="#000000" stroke-width="3"/>
-                                    <rect x="38" y="100" width="24" height="60" rx="3" fill="#06b6d4" stroke="#000000" stroke-width="3"/>
-                                </svg>
-                                <span class="absolute bottom-3 left-3 bg-[#facc15] text-xs font-extrabold text-black px-3 py-1 rounded border-2 border-black shadow-[2px_2px_0px_#000000]">1500ml</span>
+                            <div class="w-full h-56 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden bg-slate-50 border border-slate-200">
+                                <img src="{{ asset('images/produk_botol.jpg') }}" alt="Rindu Premium Botol" class="w-full h-full object-cover rounded-lg" />
+                                <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-xs font-bold text-slate-800 px-3 py-1 rounded-lg border border-slate-200/60 shadow-sm">1500ml</span>
                             </div>
                             <div class="space-y-3">
                                 <div class="flex items-center justify-between">
-                                    <span class="text-xs font-black uppercase tracking-wider text-black bg-[#facc15] px-2.5 py-1 rounded border-2 border-black">Botol</span>
-                                    <span class="text-xs font-black text-black bg-[#4ade80] px-2.5 py-0.5 rounded border-2 border-black">Tersedia</span>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-100">Botol</span>
                                 </div>
-                                <h3 class="text-xl font-black text-black">Rindu Premium Botol</h3>
+                                <h3 class="text-xl font-extrabold text-slate-800">Rindu Premium Botol</h3>
                                 <p class="text-sm font-semibold text-slate-600 line-clamp-2">Botol 1500ml untuk pemakaian harian di meja kerja atau bepergian jauh.</p>
                             </div>
                         </div>
-                        <div class="mt-8 pt-4 border-t-3 border-black flex items-center justify-between gap-4">
-                            <div><span class="block text-xs font-bold text-slate-500">Harga</span><span class="text-xl font-black text-black">Rp 6.000</span></div>
-                            <a href="{{ url('/dashboard') }}" class="neo-btn neo-btn-primary px-4 py-3 text-sm flex-1">Pesan Sekarang</a>
+                        <div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
+                            <a href="{{ route('login') }}" class="neo-btn neo-btn-primary px-4 py-3 text-sm flex-1">Lihat Harga & Pesan</a>
                         </div>
                     </div>
                     <!-- Card 3 -->
                     <div class="neo-card p-6 flex flex-col justify-between group">
                         <div>
-                            <div class="w-full h-56 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden p-4 bg-white border-3 border-black">
-                                <svg viewBox="0 0 100 200" fill="none" class="h-44 w-auto">
-                                    <path d="M25 60 L30 160 C30 166 40 166 40 166 L60 166 C60 166 70 166 70 160 L75 60" fill="#ffffff" stroke="#000000" stroke-width="4"/>
-                                    <ellipse cx="50" cy="60" rx="25" ry="8" fill="#facc15" stroke="#000000" stroke-width="4"/>
-                                    <path d="M28 85 L32 155 L68 155 L72 85 Z" fill="#06b6d4" stroke="#000000" stroke-width="3"/>
-                                </svg>
-                                <span class="absolute bottom-3 left-3 bg-[#facc15] text-xs font-extrabold text-black px-3 py-1 rounded border-2 border-black shadow-[2px_2px_0px_#000000]">220ml</span>
+                            <div class="w-full h-56 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden bg-slate-50 border border-slate-200">
+                                <img src="{{ asset('images/produk_gelas.jpg') }}" alt="Rindu Cup Praktis" class="w-full h-full object-cover rounded-lg" />
+                                <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-xs font-bold text-slate-800 px-3 py-1 rounded-lg border border-slate-200/60 shadow-sm">220ml</span>
                             </div>
                             <div class="space-y-3">
                                 <div class="flex items-center justify-between">
-                                    <span class="text-xs font-black uppercase tracking-wider text-black bg-[#facc15] px-2.5 py-1 rounded border-2 border-black">Gelas</span>
-                                    <span class="text-xs font-black text-black bg-[#4ade80] px-2.5 py-0.5 rounded border-2 border-black">Tersedia</span>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-100">Gelas</span>
                                 </div>
-                                <h3 class="text-xl font-black text-black">Rindu Cup Praktis</h3>
+                                <h3 class="text-xl font-extrabold text-slate-800">Rindu Cup Praktis</h3>
                                 <p class="text-sm font-semibold text-slate-600 line-clamp-2">Air minum dalam kemasan gelas 220ml steril, sangat pas untuk hidrasi singkat tamu Anda.</p>
                             </div>
                         </div>
-                        <div class="mt-8 pt-4 border-t-3 border-black flex items-center justify-between gap-4">
-                            <div><span class="block text-xs font-bold text-slate-500">Harga</span><span class="text-xl font-black text-black">Rp 1.500</span></div>
-                            <a href="{{ url('/dashboard') }}" class="neo-btn neo-btn-primary px-4 py-3 text-sm flex-1">Pesan Sekarang</a>
+                        <div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
+                            <a href="{{ route('login') }}" class="neo-btn neo-btn-primary px-4 py-3 text-sm flex-1">Lihat Harga & Pesan</a>
                         </div>
                     </div>
                 </div>
@@ -500,74 +455,59 @@
         </div>
     </section>
 
-    <!-- Definitions for Card Outlines -->
-    <svg class="hidden">
-        <defs>
-            <linearGradient id="pCardGlass" x1="0" y1="0" x2="100" y2="200" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="100%" stop-color="#f8fafc"/>
-            </linearGradient>
-            <linearGradient id="waterDropGrad" x1="50" y1="40" x2="50" y2="180" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#2563eb"/>
-                <stop offset="100%" stop-color="#06b6d4"/>
-            </linearGradient>
-        </defs>
-    </svg>
-
     <!-- Layanan Langganan Section -->
-    <section id="layanan" class="py-24 border-t-4 border-black bg-white">
+    <section id="layanan" class="py-24 border-t border-slate-100 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <!-- Section Title -->
             <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
-                <span class="text-xs font-extrabold tracking-widest text-[#2563eb] bg-[#facc15] px-3 py-1 border-2 border-black rounded-lg uppercase">📅 Jadwal Berlangganan</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-black">
+                <span class="text-xs font-bold tracking-widest text-indigo-700 bg-indigo-50 px-3 py-1 border border-indigo-100 rounded-full uppercase">Jadwal Berlangganan</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-800">
                     Sistem Berlangganan Pintar Rindu Water
                 </h2>
-                <p class="text-slate-700 font-bold max-w-md mx-auto">
+                <p class="text-slate-500 max-w-md mx-auto">
                     Kendalikan pasokan air bersih murni Anda secara fleksibel menggunakan fitur langganan terjadwal.
                 </p>
-                <div class="w-24 h-2 bg-black rounded-full mx-auto"></div>
+                <div class="w-24 h-1 bg-indigo-500 rounded-full mx-auto mt-2"></div>
             </div>
 
             <!-- Steps Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
                 <!-- Step 1 -->
                 <div class="neo-card p-8 text-center relative group">
-                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-[#2563eb] text-white font-extrabold text-lg flex items-center justify-center shadow-[3px_3px_0px_#000000] border-3 border-black">
+                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 text-white font-extrabold text-lg flex items-center justify-center shadow-md">
                         1
                     </span>
-                    <h3 class="text-xl font-extrabold text-black mb-3 mt-4">Buat Akun</h3>
-                    <p class="text-slate-700 font-bold text-sm leading-relaxed">
+                    <h3 class="text-xl font-extrabold text-slate-800 mb-3 mt-4">Buat Akun</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
                         Mendaftarlah secara instan dan lengkapi alamat detail profil pengiriman Anda di sistem kami.
                     </p>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="neo-card p-8 text-center relative group bg-[#facc15]">
-                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-[#2563eb] text-white font-extrabold text-lg flex items-center justify-center shadow-[3px_3px_0px_#000000] border-3 border-black">
+                <div class="neo-card p-8 text-center relative group bg-indigo-50/70 border border-indigo-100/70 shadow-sm">
+                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 text-white font-extrabold text-lg flex items-center justify-center shadow-md">
                         2
                     </span>
-                    <h3 class="text-xl font-extrabold text-black mb-3 mt-4">Pilih Paket & Produk</h3>
-                    <p class="text-black font-bold text-sm leading-relaxed">
+                    <h3 class="text-xl font-extrabold text-slate-800 mb-3 mt-4">Pilih Paket & Produk</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
                         Tentukan varian air mineral serta frekuensi jadwal pengantaran harian, mingguan, atau bulanan.
                     </p>
                 </div>
 
                 <!-- Step 3 -->
                 <div class="neo-card p-8 text-center relative group">
-                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-[#2563eb] text-white font-extrabold text-lg flex items-center justify-center shadow-[3px_3px_0px_#000000] border-3 border-black">
+                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-600 text-white font-extrabold text-lg flex items-center justify-center shadow-md">
                         3
                     </span>
-                    <h3 class="text-xl font-extrabold text-black mb-3 mt-4">Air Diantar Otomatis</h3>
-                    <p class="text-slate-700 font-bold text-sm leading-relaxed">
+                    <h3 class="text-xl font-extrabold text-slate-800 mb-3 mt-4">Air Diantar Otomatis</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">
                         Kurir profesional kami akan mengantarkan air segar steril Anda langsung ke lokasi secara berkala.
                     </p>
                 </div>
             </div>
 
-            <!-- Call to Action below steps -->
             <div class="mt-16 text-center">
-                <a href="{{ route('register') }}" class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-white neo-btn neo-btn-primary gap-2 group">
+                <a href="{{ route('login') }}" class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-white neo-btn neo-btn-primary gap-2 group">
                     <span>Mulai Berlangganan Sekarang</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 group-hover:translate-x-1 transition-transform">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -578,53 +518,53 @@
     </section>
 
     <!-- Testimonial Section -->
-    <section class="py-24 border-t-4 border-black">
+    <section class="py-24 border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <!-- Title Info -->
                 <div class="lg:col-span-4 space-y-6 text-center lg:text-left">
-                    <span class="text-xs font-extrabold tracking-widest text-[#2563eb] bg-[#facc15] px-3 py-1 border-2 border-black rounded-lg uppercase">💬 Ulasan Pengguna</span>
-                    <h2 class="text-3xl sm:text-4xl font-black text-black leading-tight">
+                    <span class="text-xs font-bold tracking-widest text-indigo-700 bg-indigo-50 px-3 py-1 border border-indigo-100 rounded-full uppercase">Ulasan Pengguna</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-800 leading-tight">
                         Apa Kata Mereka Tentang Rindu Water?
                     </h2>
-                    <p class="text-slate-700 font-bold">
+                    <p class="text-slate-500">
                         Ribuan keluarga dan institusi telah mempercayakan kebutuhan hidrasi bersih higienis harian mereka bersama kami.
                     </p>
-                    <div class="w-20 h-1 bg-black rounded-full mx-auto lg:mx-0"></div>
+                    <div class="w-20 h-1 bg-indigo-500 rounded-full mx-auto lg:mx-0 mt-2"></div>
                 </div>
 
                 <!-- Testimonials Cards Grid -->
                 <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <!-- Testi 1 -->
-                    <div class="neo-card p-8 bg-[#06b6d4] flex flex-col justify-between relative">
-                        <p class="text-black font-semibold text-sm italic leading-relaxed">
+                    <div class="neo-card p-8 bg-cyan-50/70 border border-cyan-100/70 flex flex-col justify-between relative shadow-sm hover:shadow-md transition-all">
+                        <p class="text-slate-700 font-semibold text-sm italic leading-relaxed">
                             "Rindu Water benar-benar mengubah cara kami mengonsumsi air. Jadwal pengantaran mingguan sangat konsisten, dan kualitas air mineralnya benar-benar terasa segar dan murni. Sangat direkomendasikan!"
                         </p>
-                        <div class="flex items-center gap-3 pt-6 mt-6 border-t-2 border-black">
+                        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-cyan-200/50">
                             <!-- Avatar Outlined -->
-                            <div class="w-10 h-10 rounded-full bg-white border-2 border-black text-black font-black flex items-center justify-center text-xs shadow-[2px_2px_0px_#000000]">
+                            <div class="w-10 h-10 rounded-full bg-white border border-cyan-200 text-cyan-700 font-bold flex items-center justify-center text-xs shadow-sm">
                                 AR
                             </div>
                             <div>
-                                <span class="block text-sm font-black text-black">Ahmad Rian</span>
-                                <span class="text-xs font-extrabold text-slate-800">Kepala Rumah Tangga, Jakarta</span>
+                                <span class="block text-sm font-bold text-slate-800">Ahmad Rian</span>
+                                <span class="text-xs font-semibold text-slate-500">Kepala Rumah Tangga, Jakarta</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Testi 2 -->
-                    <div class="neo-card p-8 bg-[#a78bfa] flex flex-col justify-between relative">
-                        <p class="text-black font-semibold text-sm italic leading-relaxed">
+                    <div class="neo-card p-8 bg-indigo-50/70 border border-indigo-100/70 flex flex-col justify-between relative shadow-sm hover:shadow-md transition-all">
+                        <p class="text-slate-700 font-semibold text-sm italic leading-relaxed">
                             "Sangat praktis untuk kantor kami yang memiliki 50 staf. Fitur langganan bulanan di dashboard admin menghemat waktu pengadaan barang kami. Layanan kurirnya cepat dan ramah!"
                         </p>
-                        <div class="flex items-center gap-3 pt-6 mt-6 border-t-2 border-black">
+                        <div class="flex items-center gap-3 pt-6 mt-6 border-t border-indigo-200/50">
                             <!-- Avatar -->
-                            <div class="w-10 h-10 rounded-full bg-white border-2 border-black text-black font-black flex items-center justify-center text-xs shadow-[2px_2px_0px_#000000]">
+                            <div class="w-10 h-10 rounded-full bg-white border border-indigo-200 text-indigo-700 font-bold flex items-center justify-center text-xs shadow-sm">
                                 S
                             </div>
                             <div>
-                                <span class="block text-sm font-black text-black">Sarah</span>
-                                <span class="text-xs font-extrabold text-slate-800">Office Manager, PT Maju Bersama</span>
+                                <span class="block text-sm font-bold text-slate-800">Sarah</span>
+                                <span class="text-xs font-semibold text-slate-500">Office Manager, PT Maju Bersama</span>
                             </div>
                         </div>
                     </div>
@@ -634,27 +574,27 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 border-t-4 border-black bg-black text-white">
+    <footer class="py-16 border-t border-slate-800 bg-slate-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b-2 border-slate-800">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-12 border-b border-slate-800">
                 <!-- Branding info -->
                 <div class="md:col-span-5 space-y-6">
                     <a href="#" class="flex items-center space-x-2">
-                        <span class="p-2 bg-[#facc15] rounded-full text-black border-2 border-black">
+                        <span class="p-2 bg-indigo-600 rounded-xl text-white p-2.5 shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.105-6 11.25-6 11.25S7.5 17.605 7.5 10.5a6 6 0 1112 0z" />
                             </svg>
                         </span>
-                        <span class="text-xl font-black text-white">Rindu <span class="text-[#facc15]">Water</span></span>
+                        <span class="text-xl font-extrabold text-white">Rindu <span class="text-indigo-400">Water</span></span>
                     </a>
                     <p class="text-sm font-semibold text-slate-400 leading-relaxed max-w-sm">
-                        Menghadirkan air mineral alami pegunungan berkualitas tinggi secara steril dan higienis untuk kesehatan hidrasi terbaik Anda setiap hari.
+                        Menghadirkan air alkali terionisasi berkualitas tinggi secara steril dan higienis untuk kesehatan hidrasi dan keseimbangan tubuh terbaik Anda setiap hari.
                     </p>
                 </div>
 
                 <!-- Footer Menu 1 -->
                 <div class="md:col-span-3 space-y-4">
-                    <h4 class="text-sm font-black text-[#facc15] uppercase tracking-wider">Tautan Cepat</h4>
+                    <h4 class="text-sm font-bold text-indigo-400 uppercase tracking-wider">Tautan Cepat</h4>
                     <ul class="space-y-2 text-sm font-bold text-slate-300">
                         <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
                         <li><a href="#keunggulan" class="hover:text-white transition-colors">Keunggulan</a></li>
@@ -665,12 +605,12 @@
 
                 <!-- Footer Menu 2 -->
                 <div class="md:col-span-4 space-y-4">
-                    <h4 class="text-sm font-black text-[#facc15] uppercase tracking-wider">Hubungi Kami</h4>
+                    <h4 class="text-sm font-bold text-indigo-400 uppercase tracking-wider">Hubungi Kami</h4>
                     <p class="text-sm text-slate-300 leading-relaxed font-semibold">
                         Alamat Pabrik Utama:<br>
-                        Kawasan Industri Mata Air Pegunungan Vulkanik, Jawa Barat, Indonesia
+                        Kawasan Industri Pengolahan Air Higienis Modern, Jawa Barat, Indonesia
                     </p>
-                    <p class="text-sm text-slate-200 font-black">
+                    <p class="text-sm text-slate-200 font-bold">
                         Email: info@rinduwater.co.id<br>
                         Telepon: (021) 8888-9999
                     </p>
@@ -691,25 +631,14 @@
     <!-- Header Scroll background change script & Custom Smooth Scroll -->
     <script>
         window.addEventListener('scroll', function() {
-            const header = document.getElementById('main-header');
             const navCard = document.getElementById('main-nav-card');
             
             if (window.scrollY > 50) {
-                // Header container becomes solid cream with a bottom border
-                header.classList.remove('bg-transparent', 'border-transparent');
-                header.classList.add('bg-[#F4F2EC]', 'border-black');
-                
-                // Navbar card gets pressed down shadow
-                navCard.classList.remove('shadow-[4px_4px_0px_#000000]');
-                navCard.classList.add('shadow-[2px_2px_0px_#000000]', 'translate-x-[2px]', 'translate-y-[2px]');
+                navCard.classList.remove('shadow-md');
+                navCard.classList.add('shadow-sm', 'bg-white/90');
             } else {
-                // Header container becomes transparent
-                header.classList.remove('bg-[#F4F2EC]', 'border-black');
-                header.classList.add('bg-transparent', 'border-transparent');
-                
-                // Navbar card gets normal shadow
-                navCard.classList.remove('shadow-[2px_2px_0px_#000000]', 'translate-x-[2px]', 'translate-y-[2px]');
-                navCard.classList.add('shadow-[4px_4px_0px_#000000]');
+                navCard.classList.remove('shadow-sm', 'bg-white/90');
+                navCard.classList.add('shadow-md');
             }
         });
 

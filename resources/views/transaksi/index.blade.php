@@ -1,31 +1,3 @@
-<<<<<<< HEAD
-@extends('layouts.app')
-
-@section('content')
-<div class="py-12 bg-gray-100">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="neo-raised overflow-hidden p-8 sm:rounded-[24px]">
-            <h2 class="text-2xl font-extrabold text-slate-800 mb-6">Riwayat Transaksi</h2>
-
-            <div class="space-y-4">
-                @forelse($transaksi as $t)
-                    <div class="bg-[#e0e5ec] rounded-2xl p-4 shadow-[inset_3px_3px_6px_#a3b1c6,inset_-3px_-3px_6px_#ffffff] flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold text-slate-800">Transaksi #{{ $t->id }}</h3>
-                            <p class="text-sm text-slate-500">Total: Rp {{ number_format($t->total_harga ?? 0, 0, ',', '.') }}</p>
-                            <p class="text-xs">Status: {{ $t->status_pembayaran ?? 'Belum bayar' }}</p>
-                        </div>
-                        <a href="{{ route('transaksi.show', $t->id) }}" class="text-xs bg-blue-500 text-white px-3 py-1 rounded-lg">Detail</a>
-                    </div>
-                @empty
-                    <p class="text-slate-500">Belum ada transaksi</p>
-                @endforelse
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
-=======
 @extends('layouts.admin')
 
 @section('title', 'Riwayat Transaksi')
@@ -36,13 +8,13 @@
 
     <!-- Table Container -->
     <div class="neo-brutal-card p-6 bg-white space-y-6">
-        <div class="border-b-3 border-black pb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-            <h3 class="text-xl font-black text-black">Daftar Transaksi Pelanggan</h3>
+        <div class="border-b border-slate-100 pb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+            <h3 class="text-xl font-extrabold text-slate-800">Daftar Transaksi Pelanggan</h3>
             <div class="flex gap-2">
-                <span class="px-3 py-1 bg-[#4ade80] border-2 border-black rounded-lg text-xs font-black shadow-[1.5px_1.5px_0px_#000000]">
+                <span class="px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-xs font-bold shadow-sm shadow-emerald-500/10">
                     Berhasil: Rp {{ number_format($transaksi->whereIn('status_transaksi', ['dibayar', 'dikirim', 'selesai'])->sum('total_bayar'), 0, ',', '.') }}
                 </span>
-                <span class="px-3 py-1 bg-[#facc15] border-2 border-black rounded-lg text-xs font-black shadow-[1.5px_1.5px_0px_#000000]">
+                <span class="px-3 py-1.5 bg-gradient-to-tr from-yellow-400 to-yellow-300 text-slate-800 rounded-lg text-xs font-bold shadow-sm shadow-yellow-400/10">
                     Total Catatan: {{ $transaksi->count() }}
                 </span>
             </div>
@@ -52,29 +24,28 @@
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
                 <thead>
-                    <tr class="border-b-3 border-black text-xs font-black uppercase text-slate-400">
+                    <tr class="border-b border-slate-100 text-xs font-bold uppercase text-slate-500">
                         <th class="pb-3 pl-2">Invoice</th>
                         <th class="pb-3">Pelanggan</th>
                         <th class="pb-3">Tanggal</th>
                         <th class="pb-3">Total Bayar</th>
                         <th class="pb-3">Metode</th>
                         <th class="pb-3">Status Transaksi</th>
-                        <th class="pb-3 text-center">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y-2 divide-black/10">
+                <tbody class="divide-y divide-slate-100">
                     @foreach($transaksi as $tx)
                     <tr class="hover:bg-slate-50 transition-colors">
                         <!-- Invoice -->
-                        <td class="py-4 pl-2 font-black text-sm">
-                            <a href="{{ route('transaksi.show', $tx->id_transaksi) }}" class="text-blue-600 hover:underline">
+                        <td class="py-4 pl-2 font-bold text-sm">
+                            <a href="{{ route('transaksi.show', $tx->id_transaksi) }}" class="text-indigo-600 hover:text-indigo-800 hover:underline">
                                 {{ $tx->kode_invoice }}
                             </a>
                         </td>
                         
                         <!-- Pelanggan -->
                         <td class="py-4">
-                            <div class="font-extrabold text-sm text-black">{{ $tx->pelanggan->nama_pelanggan ?? 'Umum' }}</div>
+                            <div class="font-extrabold text-sm text-slate-800">{{ $tx->pelanggan->nama_pelanggan ?? 'Umum' }}</div>
                             <div class="text-xs font-semibold text-slate-500">{{ $tx->pelanggan->no_telepon ?? '' }}</div>
                         </td>
 
@@ -84,62 +55,30 @@
                         </td>
 
                         <!-- Total Bayar -->
-                        <td class="py-4 font-black text-sm text-black">
+                        <td class="py-4 font-bold text-sm text-slate-800">
                             Rp {{ number_format($tx->total_bayar, 0, ',', '.') }}
                         </td>
 
                         <!-- Metode Pembayaran -->
-                        <td class="py-4 font-bold text-xs capitalize text-black">
-                            💳 {{ $tx->metode_pembayaran }}
+                        <td class="py-4 font-bold text-xs capitalize text-slate-700">
+                            {{ $tx->metode_pembayaran }}
                         </td>
 
                         <!-- Status Badge -->
                         <td class="py-4">
                             @if($tx->status_transaksi === 'selesai')
-                                <span class="px-2.5 py-1 bg-[#4ade80] border-2 border-black rounded-lg text-[10px] font-black uppercase shadow-[1.5px_1.5px_0px_#000000]">Selesai</span>
+                                <span class="px-2.5 py-1 bg-emerald-500 text-white rounded-lg text-[10px] font-bold uppercase shadow-sm">Selesai</span>
                             @elseif($tx->status_transaksi === 'dikirim')
-                                <span class="px-2.5 py-1 bg-[#06b6d4] border-2 border-black rounded-lg text-[10px] font-black uppercase shadow-[1.5px_1.5px_0px_#000000]">Dikirim</span>
+                                <span class="px-2.5 py-1 bg-cyan-500 text-white rounded-lg text-[10px] font-bold uppercase shadow-sm">Dikirim</span>
                             @elseif($tx->status_transaksi === 'dibayar')
-                                <span class="px-2.5 py-1 bg-[#facc15] border-2 border-black rounded-lg text-[10px] font-black uppercase shadow-[1.5px_1.5px_0px_#000000]">Dibayar</span>
+                                <span class="px-2.5 py-1 bg-amber-400 text-slate-800 rounded-lg text-[10px] font-bold uppercase shadow-sm">Dibayar</span>
                             @elseif($tx->status_transaksi === 'dibatalkan')
-                                <span class="px-2.5 py-1 bg-[#f43f5e] border-2 border-black rounded-lg text-[10px] font-black uppercase text-white shadow-[1.5px_1.5px_0px_#000000]">Batal</span>
+                                <span class="px-2.5 py-1 bg-rose-500 text-white rounded-lg text-[10px] font-bold uppercase shadow-sm">Batal</span>
                             @else
-                                <span class="px-2.5 py-1 bg-slate-200 border-2 border-black rounded-lg text-[10px] font-black uppercase shadow-[1.5px_1.5px_0px_#000000]">Menunggu</span>
+                                <span class="px-2.5 py-1 bg-slate-100 border border-slate-200 text-slate-600 rounded-lg text-[10px] font-bold uppercase shadow-sm">Menunggu</span>
                             @endif
                         </td>
 
-                        <!-- Action Status Form -->
-                        <td class="py-4 text-center">
-                            <div class="inline-block" x-data="{ editing: false }">
-                                <button @click="editing = !editing" class="px-3 py-1 border-2 border-black rounded-lg bg-[#facc15] font-extrabold text-[11px] shadow-[2px_2px_0px_#000000] hover:scale-105 active:scale-95 transition-all">
-                                    ⚙️ Atur
-                                </button>
-                                
-                                <!-- Toggle status modal inline -->
-                                <div x-show="editing" @click.away="editing = false" class="absolute bg-white border-3 border-black p-4 rounded-xl shadow-[6px_6px_0px_#000000] z-50 mt-2 right-4 w-56 text-left space-y-3" x-cloak>
-                                    <h4 class="font-extrabold text-xs text-black border-b-2 border-black pb-1.5">Ubah Status Transaksi</h4>
-                                    <form action="{{ route('transaksi.update', $tx->id_transaksi) }}" method="POST" class="space-y-3">
-                                        @csrf
-                                        @method('PUT')
-                                        <select name="status_transaksi" class="w-full border-2 border-black rounded-lg p-1.5 text-xs font-bold outline-none">
-                                            <option value="menunggu" {{ $tx->status_transaksi === 'menunggu' ? 'selected' : '' }}>Menunggu</option>
-                                            <option value="dibayar" {{ $tx->status_transaksi === 'dibayar' ? 'selected' : '' }}>Dibayar</option>
-                                            <option value="dikirim" {{ $tx->status_transaksi === 'dikirim' ? 'selected' : '' }}>Dikirim</option>
-                                            <option value="selesai" {{ $tx->status_transaksi === 'selesai' ? 'selected' : '' }}>Selesai</option>
-                                            <option value="dibatalkan" {{ $tx->status_transaksi === 'dibatalkan' ? 'selected' : '' }}>Dibatalkan</option>
-                                        </select>
-                                        <div class="flex gap-2">
-                                            <button type="submit" class="flex-1 py-1 bg-[#4ade80] border-2 border-black rounded-lg text-[10px] font-black text-center shadow-[1.5px_1.5px_0px_#000000]">
-                                                Simpan
-                                            </button>
-                                            <button type="button" @click="editing = false" class="flex-1 py-1 bg-slate-200 border-2 border-black rounded-lg text-[10px] font-black text-center shadow-[1.5px_1.5px_0px_#000000]">
-                                                Batal
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -147,12 +86,15 @@
         </div>
         @else
         <div class="text-center py-12 space-y-4">
-            <span class="text-6xl">🏜️</span>
-            <h4 class="font-extrabold text-lg text-black">Aktivitas Transaksi Kosong</h4>
+            <div class="flex justify-center text-slate-400">
+                <svg class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                </svg>
+            </div>
+            <h4 class="font-extrabold text-lg text-slate-800">Aktivitas Transaksi Kosong</h4>
             <p class="text-sm font-semibold text-slate-500 max-w-sm mx-auto">Belum ada transaksi pembelian air mineral yang terdata.</p>
         </div>
         @endif
     </div>
 </div>
 @endsection
->>>>>>> a8c8fecf5ded5d51f8778897db1b0b3bf4da798e

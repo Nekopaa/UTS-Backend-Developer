@@ -21,6 +21,8 @@ class Transaksi extends Model
         'status_transaksi',
         'kode_invoice',
         'catatan',
+        'metode_pengiriman',
+        'biaya_pengiriman',
     ];
 
     public function detailPesanan()
@@ -31,5 +33,10 @@ class Transaksi extends Model
     public function pelanggan()
     {
         return $this->belongsTo(Pelanggan::class, 'id_pelanggan', 'id_pelanggan');
+    }
+
+    public function pengiriman()
+    {
+        return $this->hasOne(Pengiriman::class, 'id_transaksi', 'id_transaksi');
     }
 }

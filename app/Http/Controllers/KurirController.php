@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kurir;
+use Illuminate\Validation\Rule;
 
 class KurirController extends Controller
 {
@@ -22,12 +23,23 @@ class KurirController extends Controller
     {
         $validated = $request->validate([
             'nama_kurir' => 'required|string|max:255',
-            'no_hp' => 'required|string',
+            'no_hp' => [
+                'required',
+                'string',
+                Rule::unique('kurir')->whereNull('deleted_at'),
+            ],
             'alamat' => 'required|string',
             'status_kurir' => 'required|string',
             'kendaraan' => 'required|string',
-            'plat_nomor' => 'required|string',
+            'plat_nomor' => [
+                'required',
+                'string',
+                Rule::unique('kurir')->whereNull('deleted_at'),
+            ],
             'catatan' => 'nullable|string',
+        ], [
+            'no_hp.unique' => 'Nomor HP sudah terdaftar untuk kurir lain.',
+            'plat_nomor.unique' => 'Plat nomor kendaraan sudah terdaftar untuk kurir lain.',
         ]);
 
         Kurir::create($validated);
@@ -51,12 +63,23 @@ class KurirController extends Controller
     {
         $validated = $request->validate([
             'nama_kurir' => 'required|string|max:255',
-            'no_hp' => 'required|string',
+            'no_hp' => [
+                'required',
+                'string',
+                Rule::unique('kurir')->ignore($id, 'id_kurir')->whereNull('deleted_at'),
+            ],
             'alamat' => 'required|string',
             'status_kurir' => 'required|string',
             'kendaraan' => 'required|string',
-            'plat_nomor' => 'required|string',
+            'plat_nomor' => [
+                'required',
+                'string',
+                Rule::unique('kurir')->ignore($id, 'id_kurir')->whereNull('deleted_at'),
+            ],
             'catatan' => 'nullable|string',
+        ], [
+            'no_hp.unique' => 'Nomor HP sudah terdaftar untuk kurir lain.',
+            'plat_nomor.unique' => 'Plat nomor kendaraan sudah terdaftar untuk kurir lain.',
         ]);
 
         $kurir = Kurir::findOrFail($id);

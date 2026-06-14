@@ -24,11 +24,37 @@ class AdminController extends Controller
         $totalPelanggan = Pelanggan::count();
         
         $lowStockProducts = ProdukAir::where('stok', '<', 15)->get();
-        $activeShipments = Pengiriman::whereIn('status_pengiriman', ['proses', 'dikirim'])->count();
+        $activeShipments = Pengiriman::whereIn('status_pengiriman', ['dijadwalkan', 'dalam perjalanan'])->count();
         
         $recentTransactions = Transaksi::with('pelanggan')->latest()->take(5)->get();
         $recentShipments = Pengiriman::with(['transaksi.pelanggan', 'kurir'])->latest()->take(5)->get();
         $stockHistory = RiwayatStock::latest()->take(5)->get();
+
+        // New Kanban & KPI Stats
+        $incomingOrdersToday = Transaksi::whereDate('tanggal_transaksi', \Carbon\Carbon::today())->count();
+        $activeCouriersCount = Kurir::where('status_kurir', 'aktif')->count();
+        $totalRevenue = Transaksi::whereIn('status_transaksi', ['dibayar', 'selesai'])->sum('total_bayar');
+        $criticalStockCount = ProdukAir::where('stok', '<', 15)->count();
+
+        $allShipments = Pengiriman::with(['transaksi.pelanggan', 'transaksi.detailPesanan.produk', 'kurir'])->get();
+
+        $menungguShipments = $allShipments->filter(function ($s) {
+            return $s->status_pengiriman === 'dijadwalkan' && is_null($s->id_kurir);
+        });
+
+        $diprosesShipments = $allShipments->filter(function ($s) {
+            return $s->status_pengiriman === 'dijadwalkan' && !is_null($s->id_kurir);
+        });
+
+        $dijalanShipments = $allShipments->filter(function ($s) {
+            return $s->status_pengiriman === 'dalam perjalanan';
+        });
+
+        $selesaiShipments = $allShipments->filter(function ($s) {
+            return $s->status_pengiriman === 'terkirim';
+        });
+
+        $activeCouriers = Kurir::where('status_kurir', 'aktif')->get();
 
         return view('admin.dashboard', compact(
             'totalTransaksi',
@@ -39,7 +65,16 @@ class AdminController extends Controller
             'activeShipments',
             'recentTransactions',
             'recentShipments',
-            'stockHistory'
+            'stockHistory',
+            'incomingOrdersToday',
+            'activeCouriersCount',
+            'totalRevenue',
+            'criticalStockCount',
+            'menungguShipments',
+            'diprosesShipments',
+            'dijalanShipments',
+            'selesaiShipments',
+            'activeCouriers'
         ));
     }
 
@@ -58,15 +93,26 @@ class AdminController extends Controller
     {
         $validated = $request->validate([
             'nama_admin' => 'required|string|max:255',
-            'username' => 'required|string|unique:admins,username',
+            'username' => 'required|string|unique:admin,username',
             'password' => 'required|string|min:6',
-            'email' => 'required|email|unique:admins,email',
+            'email' => 'required|email|unique:admin,email',
             'no_hp' => 'required|string',
             'role' => 'required|string',
             'status_admin' => 'required|string',
         ]);
 
-        Admin::create($validated);
+        $validated['password'] = bcrypt($validated['password']);
+
+        \Illuminate\Support\Facades\DB::transaction(function () use ($validated) {
+            \App\Models\Admin::create($validated);
+            
+            \App\Models\User::create([
+                'name' => $validated['nama_admin'],
+                'email' => $validated['email'],
+                'password' => $validated['password'],
+                'role' => 'admin',
+            ]);
+        });
 
         return redirect()->route('admin.index')->with('success', 'Admin berhasil ditambahkan');
     }
@@ -89,8 +135,8 @@ class AdminController extends Controller
 
         $validated = $request->validate([
             'nama_admin' => 'required|string|max:255',
-            'username' => 'required|string|unique:admins,username,' . $id,
-            'email' => 'required|email|unique:admins,email,' . $id,
+            'username' => 'required|string|unique:admin,username,' . $id . ',id_admin',
+            'email' => 'required|email|unique:admin,email,' . $id . ',id_admin',
             'no_hp' => 'required|string',
             'role' => 'required|string',
             'status_admin' => 'required|string',

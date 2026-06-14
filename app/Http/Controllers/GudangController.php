@@ -23,9 +23,9 @@ class GudangController extends Controller
         $validated = $request->validate([
             'nama_gudang' => 'required|string|max:255',
             'lokasi' => 'required|string',
-            'kapasitas_total' => 'required|integer',
-            'stok_saat_ini' => 'required|integer',
-            'status_gudang' => 'required|string',
+            'kapasitas_total' => 'required|integer|min:0',
+            'stok_saat_ini' => 'required|integer|min:0',
+            'status_gudang' => 'required|in:aktif,penuh,maintenance',
         ]);
 
         Gudang::create($validated);
@@ -50,9 +50,9 @@ class GudangController extends Controller
         $validated = $request->validate([
             'nama_gudang' => 'required|string|max:255',
             'lokasi' => 'required|string',
-            'kapasitas_total' => 'required|integer',
-            'stok_saat_ini' => 'required|integer',
-            'status_gudang' => 'required|string',
+            'kapasitas_total' => 'required|integer|min:0',
+            'stok_saat_ini' => 'required|integer|min:0',
+            'status_gudang' => 'required|in:aktif,penuh,maintenance',
         ]);
 
         $gudang = Gudang::findOrFail($id);

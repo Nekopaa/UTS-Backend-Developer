@@ -1,7 +1,7 @@
 <x-guest-layout>
     <!-- Back Button -->
     <div class="mb-6">
-        <a href="/" class="inline-flex items-center gap-2 px-4 py-2 border-2 border-black rounded-xl font-extrabold bg-[#facc15] text-black shadow-[3px_3px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_#000000] transition-all duration-100 text-xs">
+        <a href="/" class="neo-brutal-btn px-4 py-2 text-xs gap-2 text-slate-700">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
@@ -62,6 +62,13 @@
             </x-primary-button>
         </div>
     </form>
+
+    <div class="mt-6 pt-4 border-t-2 border-dashed border-slate-200 text-center text-sm font-semibold text-slate-500">
+        Belum daftar? 
+        <a href="{{ route('register') }}" class="font-extrabold text-blue-600 hover:text-blue-800 hover:underline transition-colors">
+            Daftar
+        </a>
+    </div>
 
     <script>
         function togglePasswordVisibility(fieldId, button) {

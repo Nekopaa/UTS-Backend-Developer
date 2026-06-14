@@ -15,26 +15,30 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <!-- Neo-brutalism Styles -->
+        <!-- Soft Glassmorphic SaaS Design System -->
         <style>
             :root {
-                --neo-bg: #F4F2EC;
+                --neo-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
                 --neo-yellow: #facc15;
-                --neo-border-color: #000000;
+                --neo-blue: #4f46e5;
+                --neo-border-color: rgba(226, 232, 240, 0.8);
             }
 
             * { font-family: 'Plus Jakarta Sans', sans-serif; }
 
             body {
-                background-color: var(--neo-bg);
-                color: #000000;
+                background: var(--neo-bg);
+                color: #1e293b;
+                min-height: 100vh;
             }
 
             .neo-container {
-                background-color: #ffffff;
-                border: 4px solid var(--neo-border-color);
-                border-radius: 16px;
-                box-shadow: 8px 8px 0px var(--neo-border-color);
+                background: rgba(255, 255, 255, 0.85);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(226, 232, 240, 0.8);
+                border-radius: 24px;
+                box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.03), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
             }
 
             .neo-logo-wrapper {
@@ -43,25 +47,28 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border-radius: 50%;
-                background-color: var(--neo-yellow);
-                border: 3px solid var(--neo-border-color);
-                box-shadow: 4px 4px 0px var(--neo-border-color);
-                transition: all 0.2s ease;
+                border-radius: 20px;
+                background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+                color: #ffffff;
+                box-shadow: 0 8px 16px rgba(79, 70, 229, 0.2);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
             .neo-logo-wrapper:hover {
-                transform: translate(-2px, -2px);
-                box-shadow: 6px 6px 0px var(--neo-border-color);
+                transform: translateY(-2px);
+                box-shadow: 0 12px 20px rgba(79, 70, 229, 0.3);
             }
         </style>
     </head>
     <body class="antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-[#F4F2EC]">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" style="background: var(--neo-bg);">
             <div class="mb-8">
                 <a href="/" class="block">
                     <div class="neo-logo-wrapper">
-                        <x-application-logo class="w-10 h-10 text-black" />
+                        <!-- Custom logo icon using white color -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-10 h-10 text-white">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.105-6 11.25-6 11.25S7.5 17.605 7.5 10.5a6 6 0 1112 0z" />
+                        </svg>
                     </div>
                 </a>
             </div>

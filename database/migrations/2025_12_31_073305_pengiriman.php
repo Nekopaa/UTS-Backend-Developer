@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('pengiriman', function (Blueprint $table) {
             $table->id('id_pengiriman');
             $table->foreignId('id_transaksi')->constrained('transaksi','id_transaksi');
-            $table->foreignId('id_kurir')->constrained('kurir','id_kurir')->nullable();
+            $table->foreignId('id_kurir')->nullable()->constrained('kurir','id_kurir');
             $table->text('alamat_tujuan');
             $table->timestamp('tanggal_pengiriman')->nullable();
             $table->enum('status_pengiriman', ['dijadwalkan', 'dalam perjalanan', 'terkirim', 'gagal'])->default('dijadwalkan');

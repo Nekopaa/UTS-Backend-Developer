@@ -1,7 +1,7 @@
 <x-guest-layout>
     <!-- Back Button -->
     <div class="mb-6">
-        <a href="/" class="inline-flex items-center gap-2 px-4 py-2 border-2 border-black rounded-xl font-extrabold bg-[#facc15] text-black shadow-[3px_3px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_#000000] transition-all duration-100 text-xs">
+        <a href="/" class="neo-brutal-btn px-4 py-2 text-xs gap-2 text-slate-700">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
@@ -26,19 +26,6 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-<<<<<<< HEAD
-        <!-- Role Selection -->
-        <div class="mt-4">
-            <x-input-label :value="__('Daftar sebagai')" />
-            <div class="mt-2 space-x-4">
-                <label class="inline-flex items-center">
-                    <input type="radio" name="role" value="user" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" {{ old('role', 'user') === 'user' ? 'checked' : '' }}>
-                    <span class="ml-2 text-sm text-gray-600">Pelanggan</span>
-                </label>
-                <label class="inline-flex items-center">
-                    <input type="radio" name="role" value="admin" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" {{ old('role') === 'admin' ? 'checked' : '' }}>
-                    <span class="ml-2 text-sm text-gray-600">Admin</span>
-=======
         <!-- Role Selection (Admin / Pelanggan) -->
         <div class="mt-4">
             <x-input-label for="role" :value="__('Daftar sebagai')" />
@@ -51,27 +38,17 @@
                 <label class="inline-flex items-center gap-3">
                     <input type="radio" name="role" value="admin" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" {{ old('role') === 'admin' ? 'checked' : '' }}>
                     <span class="text-sm text-gray-700 font-bold">Admin</span>
->>>>>>> a8c8fecf5ded5d51f8778897db1b0b3bf4da798e
                 </label>
             </div>
             <x-input-error :messages="$errors->get('role')" class="mt-2" />
         </div>
 
-<<<<<<< HEAD
-        <!-- Company Code (for admin) -->
-        <div class="mt-4" id="company_code_container" style="display: {{ old('role') === 'admin' ? 'block' : 'none' }};">
-            <x-input-label for="company_code" :value="__('Kode Perusahaan')" />
-            <x-text-input id="company_code" class="block mt-1 w-full" type="text" name="company_code" :value="old('company_code')" autocomplete="off" />
-            <x-input-error :messages="$errors->get('company_code')" class="mt-2" />
-            <p class="text-xs text-gray-500 mt-1">Masukkan kode "PRIMA" untuk mendaftar sebagai admin</p>
-=======
         <!-- Company Code (only for Admin) -->
         <div class="mt-4" id="company_code_container" style="display: {{ old('role') === 'admin' ? 'block' : 'none' }};">
             <x-input-label for="company_code" :value="__('Kode Perusahaan (Admin)')" />
-            <x-text-input id="company_code" class="block mt-1 w-full" type="text" name="company_code" value="{{ old('company_code') }}" autocomplete="off" />
+            <x-text-input id="company_code" class="block mt-1 w-full" type="text" name="company_code" :value="old('company_code')" autocomplete="off" />
             <div class="text-xs font-bold text-gray-600 mt-2">Kode: <span class="font-black">PRIMA</span></div>
             <x-input-error :messages="$errors->get('company_code')" class="mt-2" />
->>>>>>> a8c8fecf5ded5d51f8778897db1b0b3bf4da798e
         </div>
 
         <!-- Password -->
@@ -125,24 +102,6 @@
     </form>
 
     <script>
-<<<<<<< HEAD
-        document.addEventListener('DOMContentLoaded', function() {
-            const roleRadios = document.querySelectorAll('input[name="role"]');
-            const companyCodeContainer = document.getElementById('company_code_container');
-            
-            roleRadios.forEach(radio => {
-                radio.addEventListener('change', function() {
-                    if (this.value === 'admin') {
-                        companyCodeContainer.style.display = 'block';
-                    } else {
-                        companyCodeContainer.style.display = 'none';
-                    }
-                });
-            });
-        });
-    </script>
-</x-guest-layout>
-=======
         function toggleCompanyCodeField() {
             const selectedRole = document.querySelector('input[name="role"]:checked')?.value;
             const container = document.getElementById('company_code_container');
@@ -173,4 +132,3 @@
         }
     </script>
 </x-guest-layout>
->>>>>>> a8c8fecf5ded5d51f8778897db1b0b3bf4da798e

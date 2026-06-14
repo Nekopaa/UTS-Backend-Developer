@@ -20,6 +20,9 @@ class Langganan extends Model
         'tanggal_berakhir',
         'jumlah_pesanan',
         'status_langganan',
+        'hari_pengantaran',
+        'jam_pengantaran',
+        'durasi_bulan',
     ];
 
     public function produk()
@@ -30,5 +33,10 @@ class Langganan extends Model
     public function pelanggan()
     {
         return $this->belongsTo(Pelanggan::class, 'id_pelanggan', 'id_pelanggan');
+    }
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class, 'id_langganan', 'id_langganan');
     }
 }
