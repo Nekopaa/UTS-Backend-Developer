@@ -11,7 +11,7 @@
                 
                 <div>
                     <label class="block text-sm font-medium text-slate-700">Periode Pengantaran</label>
-                    <select name="periode_pengantaran" class="mt-1 block w-full rounded-xl border-gray-300 shadow-[inset_2px_2px_4px_#a3b1c6,inset_-2px_-2px_4px_#ffffff]" required>
+                    <select name="periode_pengantaran" class="neo-brutal-input" required>
                         <option value="">Pilih Periode</option>
                         <option value="Mingguan">Mingguan</option>
                         <option value="Bulanan">Bulanan</option>
@@ -21,17 +21,17 @@
                 
                 <div>
                     <label class="block text-sm font-medium text-slate-700">Tanggal Mulai</label>
-                    <input type="date" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}" class="mt-1 block w-full rounded-xl border-gray-300 shadow-[inset_2px_2px_4px_#a3b1c6,inset_-2px_-2px_4px_#ffffff]" required>
+                    <input type="date" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}" class="neo-brutal-input" required>
                 </div>
                 
                 <div>
                     <label class="block text-sm font-medium text-slate-700">Tanggal Berakhir</label>
-                    <input type="date" name="tanggal_berakhir" value="{{ old('tanggal_berakhir') }}" class="mt-1 block w-full rounded-xl border-gray-300 shadow-[inset_2px_2px_4px_#a3b1c6,inset_-2px_-2px_4px_#ffffff]" required>
+                    <input type="date" name="tanggal_berakhir" value="{{ old('tanggal_berakhir') }}" class="neo-brutal-input" required>
                 </div>
                 
                 <div>
                     <label class="block text-sm font-medium text-slate-700">Jumlah Pesanan (Galon)</label>
-                    <input type="number" name="jumlah_pesanan" value="{{ old('jumlah_pesanan', 1) }}" min="1" class="mt-1 block w-full rounded-xl border-gray-300 shadow-[inset_2px_2px_4px_#a3b1c6,inset_-2px_-2px_4px_#ffffff]" required>
+                    <input type="number" name="jumlah_pesanan" value="{{ old('jumlah_pesanan', 1) }}" min="1" class="neo-brutal-input" required>
                 </div>
                 
                 <div class="flex justify-end">

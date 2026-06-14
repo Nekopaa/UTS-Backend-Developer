@@ -49,7 +49,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="space-y-2">
                     <label for="kendaraan" class="block font-black text-sm text-black">Tipe Kendaraan Operasional <span class="text-red-500">*</span></label>
-                    <input type="text" id="kendaraan" name="kendaraan" class="neo-brutal-input" value="{{ old('kendaraan') }}" required placeholder="Contoh: Sepeda Motor, Mobil Box, Tossa">
+                    <select id="kendaraan" name="kendaraan" class="neo-brutal-input" required>
+                        <option value="Motor" {{ old('kendaraan') === 'Motor' ? 'selected' : '' }}>Motor</option>
+                        <option value="Mobil" {{ old('kendaraan') === 'Mobil' ? 'selected' : '' }}>Mobil</option>
+                        <option value="Grandmax" {{ old('kendaraan') === 'Grandmax' ? 'selected' : '' }}>Grandmax</option>
+                    </select>
                     @error('kendaraan') <p class="text-xs font-black text-red-500 mt-1">{{ $message }}</p> @enderror
                 </div>
 

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 
 @section('title', 'Inventaris Gudang')
 
@@ -85,10 +85,10 @@
         <span class="text-6xl">🏢</span>
         <h4 class="font-extrabold text-lg text-black">Pusat Gudang Kosong</h4>
         <p class="text-sm font-semibold text-slate-500 max-w-sm mx-auto">Silakan daftarkan lokasi gudang penyimpanan air mineral pertama Anda.</p>
-        <a href="{{ route('gudang.create') }}" class="inline-block px-6 py-2.5 border-3 border-black rounded-xl bg-[#facc15] font-black text-xs shadow-[3px_3px_0px_#000000]">
-            Tambah Gudang Sekarang
-        </a>
+
     </div>
     @endforelse
 </div>
 @endsection
+
+

@@ -1,31 +1,3 @@
-<<<<<<< HEAD
-@extends('layouts.app')
-
-@section('content')
-<div class="py-12 bg-gray-100">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="neo-raised overflow-hidden p-8 sm:rounded-[24px]">
-            <h2 class="text-2xl font-extrabold text-slate-800 mb-6">Riwayat Transaksi</h2>
-
-            <div class="space-y-4">
-                @forelse($transaksi as $t)
-                    <div class="bg-[#e0e5ec] rounded-2xl p-4 shadow-[inset_3px_3px_6px_#a3b1c6,inset_-3px_-3px_6px_#ffffff] flex justify-between items-center">
-                        <div>
-                            <h3 class="font-bold text-slate-800">Transaksi #{{ $t->id }}</h3>
-                            <p class="text-sm text-slate-500">Total: Rp {{ number_format($t->total_harga ?? 0, 0, ',', '.') }}</p>
-                            <p class="text-xs">Status: {{ $t->status_pembayaran ?? 'Belum bayar' }}</p>
-                        </div>
-                        <a href="{{ route('transaksi.show', $t->id) }}" class="text-xs bg-blue-500 text-white px-3 py-1 rounded-lg">Detail</a>
-                    </div>
-                @empty
-                    <p class="text-slate-500">Belum ada transaksi</p>
-                @endforelse
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
-=======
 @extends('layouts.admin')
 
 @section('title', 'Riwayat Transaksi')
@@ -59,7 +31,6 @@
                         <th class="pb-3">Total Bayar</th>
                         <th class="pb-3">Metode</th>
                         <th class="pb-3">Status Transaksi</th>
-                        <th class="pb-3 text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y-2 divide-black/10">
@@ -107,39 +78,6 @@
                                 <span class="px-2.5 py-1 bg-slate-200 border-2 border-black rounded-lg text-[10px] font-black uppercase shadow-[1.5px_1.5px_0px_#000000]">Menunggu</span>
                             @endif
                         </td>
-
-                        <!-- Action Status Form -->
-                        <td class="py-4 text-center">
-                            <div class="inline-block" x-data="{ editing: false }">
-                                <button @click="editing = !editing" class="px-3 py-1 border-2 border-black rounded-lg bg-[#facc15] font-extrabold text-[11px] shadow-[2px_2px_0px_#000000] hover:scale-105 active:scale-95 transition-all">
-                                    ⚙️ Atur
-                                </button>
-                                
-                                <!-- Toggle status modal inline -->
-                                <div x-show="editing" @click.away="editing = false" class="absolute bg-white border-3 border-black p-4 rounded-xl shadow-[6px_6px_0px_#000000] z-50 mt-2 right-4 w-56 text-left space-y-3" x-cloak>
-                                    <h4 class="font-extrabold text-xs text-black border-b-2 border-black pb-1.5">Ubah Status Transaksi</h4>
-                                    <form action="{{ route('transaksi.update', $tx->id_transaksi) }}" method="POST" class="space-y-3">
-                                        @csrf
-                                        @method('PUT')
-                                        <select name="status_transaksi" class="w-full border-2 border-black rounded-lg p-1.5 text-xs font-bold outline-none">
-                                            <option value="menunggu" {{ $tx->status_transaksi === 'menunggu' ? 'selected' : '' }}>Menunggu</option>
-                                            <option value="dibayar" {{ $tx->status_transaksi === 'dibayar' ? 'selected' : '' }}>Dibayar</option>
-                                            <option value="dikirim" {{ $tx->status_transaksi === 'dikirim' ? 'selected' : '' }}>Dikirim</option>
-                                            <option value="selesai" {{ $tx->status_transaksi === 'selesai' ? 'selected' : '' }}>Selesai</option>
-                                            <option value="dibatalkan" {{ $tx->status_transaksi === 'dibatalkan' ? 'selected' : '' }}>Dibatalkan</option>
-                                        </select>
-                                        <div class="flex gap-2">
-                                            <button type="submit" class="flex-1 py-1 bg-[#4ade80] border-2 border-black rounded-lg text-[10px] font-black text-center shadow-[1.5px_1.5px_0px_#000000]">
-                                                Simpan
-                                            </button>
-                                            <button type="button" @click="editing = false" class="flex-1 py-1 bg-slate-200 border-2 border-black rounded-lg text-[10px] font-black text-center shadow-[1.5px_1.5px_0px_#000000]">
-                                                Batal
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -155,4 +93,3 @@
     </div>
 </div>
 @endsection
->>>>>>> a8c8fecf5ded5d51f8778897db1b0b3bf4da798e
